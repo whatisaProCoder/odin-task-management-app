@@ -1,7 +1,7 @@
-import Task from "./js/taskClass";
+import Task from "./js/core/taskClass";
 import "./styles.css";
-import displayJSON from "./js/displayJSON";
-import TaskManager from "./js/taskManager";
+import displayJSON from "./js/core/displayJSON";
+import TaskManager from "./js/core/taskManager";
 
 console.log("Application initialised!");
 
