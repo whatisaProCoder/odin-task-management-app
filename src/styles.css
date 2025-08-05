@@ -1,9 +1,131 @@
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/Inter.ttf") format("truetype");
+}
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    letter-spacing: -0.02em;
 }
 
 body {
     font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    font-family: "Inter";
+}
+
+.sidebar {
+    width: 275px;
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 1.125rem;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.sidebar-icon {
+    height: 1.5rem;
+}
+
+.add-task-button {
+    background-color: #4076FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #E1E1E1;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    margin-top: 2.5rem;
+    user-select: none;
+}
+
+.add-icon {
+    height: 0.875rem;
+    aspect-ratio: 1/1;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 0.75rem;
+    padding-left: 0.75rem;
+    margin-top: 0.75rem;
+    color: #1E1E1E;
+    user-select: none;
+}
+
+.sidebar-item:hover {
+    background-color: #DADADA;
+}
+
+.sidebar-item-active {
+    background-color: #F8F8F8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-color: #F8F8F8;
+}
+
+.sidebar-item-icon {
+    width: 1.125rem;
+}
+
+.sidebar-section-name {
+    color: #505050;
+    font-weight: 700;
+    margin-top: 2rem;
+}
+
+.high-priority-item-active {
+    background-color: #FFEBEB;
+    border-color: #FFC3C3;
+}
+
+.medium-priority-item-active {
+    background-color: #EAE8FF;
+    border-color: #BEBBFF;
+}
+
+.low-priority-item-active {
+    background-color: #E2FFE6;
+    border-color: #72FF80;
+}
+
+.project-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-section-add-button {
+    height: 1rem;
+}
+
+.content {
+    height: 100%;
+    flex: 1;
+    background-color: #F8F8F8;
 }
