@@ -4,6 +4,7 @@ import "./styles.css";
 
 console.log("Application initialised!");
 
-setupScrollbars();
 initialiseSidebar();
+
+setupScrollbars();
 

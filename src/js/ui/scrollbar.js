@@ -1,3 +1,5 @@
 import Scrollbar from 'smooth-scrollbar';
 
-Scrollbar.init(document.querySelector('.scroll-container'));
+export default function setupScrollbars() {
+    Scrollbar.init(document.querySelector('.scroll-container'));
+}
