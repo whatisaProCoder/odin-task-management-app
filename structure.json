@@ -1,0 +1,44 @@
+{
+  "projects": [
+    {
+      "project-id": "unique id",
+      "project-name": "some name",
+      "tasks": [
+        {
+          "title": "",
+          "description": "",
+          "dueDate": "",
+          "priority": "",
+          "notes": ""
+        },
+        {
+          "title": "",
+          "description": "",
+          "dueDate": "",
+          "priority": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "project-id": "unique id",
+      "project-name": "some name",
+      "tasks": [
+        {
+          "title": "",
+          "description": "",
+          "dueDate": "",
+          "priority": "",
+          "notes": ""
+        },
+        {
+          "title": "",
+          "description": "",
+          "dueDate": "",
+          "priority": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}
