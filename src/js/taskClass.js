@@ -1,6 +1,8 @@
+import generateID from "./cryptography";
+
 export default class Task {
     constructor(title, description, dueDate, priority, notes) {
-        this.UUID = generateUUID();
+        this.taskID = generateID();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
