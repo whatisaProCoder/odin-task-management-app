@@ -7,10 +7,12 @@ console.log("Application initialised!");
 
 const worker = new Worker();
 
-worker.
+worker.clearAllData();
+worker.addProject("Weather App");
 
 
-    import { prettyPrintJson } from 'pretty-print-json';
+
+import { prettyPrintJson } from 'pretty-print-json';
 
 const formatted = prettyPrintJson.toHtml(worker.getAllData());
 document.body.append(document.createElement("pre"));

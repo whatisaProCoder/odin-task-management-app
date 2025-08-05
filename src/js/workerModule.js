@@ -96,11 +96,9 @@ export default class Worker {
     }
 
     clearAllData() {
-        StorageManager.clearAllData();
+        this.storageManager.setData("projects", null);
+        this.storageManager.clearAllStorage();
     }
 }
-
-
-
 
 
