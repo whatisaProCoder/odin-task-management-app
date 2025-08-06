@@ -16,7 +16,8 @@ export default class TaskManager {
                         description: "A small description about this task, how you'll go about doing the task, etc.",
                         dueDate: "10:30PM - 7/8/2025",
                         priority: "High",
-                        notes: "Some notes you might want to add about this task, and so on."
+                        notes: "Some notes you might want to add about this task, and so on.",
+                        complete: false
                     }
                 ]
             }];
@@ -67,18 +68,19 @@ export default class TaskManager {
         }
     }
 
-    updateTask(projectID, taskID, updatedTaskObject) {
+    updateTask(taskID, updatedTaskObject) {
+        let flag = 0;
         for (const project of this.projects) {
-            if (project.projectID == projectID) {
-                for (const task of project.tasks) {
-                    if (task.taskID == taskID) {
-                        Object.assign(task, updatedTaskObject);
-                        this.updateStorage();
-                        break;
-                    }
+            for (const task of project.tasks) {
+                if (task.taskID == taskID) {
+                    Object.assign(task, updatedTaskObject);
+                    this.updateStorage();
+                    flag = 1;
+                    break;
                 }
-                break;
             }
+            if (flag == 1)
+                break;
         }
     }
 

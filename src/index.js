@@ -7,22 +7,15 @@ import "./styles.css";
 console.log("Application initialised!");
 
 const taskManager = new TaskManager();
-taskManager.addTask("aa999725-92b8-4ce5-855c-cb23a86ac00f", new Task(
-    "Second Task",
-    "Decription of second task",
-    "11:00PM - 22/8/2025",
-    "Medium",
-    "No notes.",
-    false
-));
-taskManager.addTask("aa999725-92b8-4ce5-855c-cb23a86ac00f", new Task(
-    "Third Task",
-    "Decription of third task",
-    "11:50PM - 22/8/2025",
-    "Low",
-    "No notes.",
-    false
-));
+taskManager.clearAllData();
+// taskManager.addTask("aa999725-92b8-4ce5-855c-cb23a86ac00f", new Task(
+//     "Second Task",
+//     "Decription of second task",
+//     "11:00PM - 22/8/2025",
+//     "Medium",
+//     "No notes.",
+//     false
+// ));
 
 initialiseSidebar();
 

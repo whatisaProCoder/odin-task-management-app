@@ -1,3 +1,4 @@
+import Task from "../core/taskClass";
 import TaskManager from "../core/taskManager";
 import menuIcon from "../../icons/menu_icon.svg";
 import blueAddIcon from "../../icons/blue_add_icon.svg";
@@ -10,10 +11,11 @@ import greenAlarmIcon from "../../icons/green_alarm_icon.svg";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
-const lowPriorityColor = "#08C81F";
+const lowPriorityColor = "#259031ff";
+
+const taskManager = new TaskManager();
 
 export default function createProjectPage(projectID) {
-    const taskManager = new TaskManager();
     const projects = taskManager.getAllProjects();
     const project = projects.find((project) => project.projectID == projectID);
 
@@ -69,9 +71,16 @@ function createTaskCard(taskObject) {
     `;
 
     const checkboxElement = taskCard.querySelector(`.task-card-checkbox`);
-    checkboxElement.addEventListener("change", (event) => {
+    checkboxElement.addEventListener("click", (event) => {
         console.log(event.target);
-        taskObject.complete = checkboxElement.checked;
+        taskManager.updateTask(taskObject.taskID, new Task(
+            taskObject.title,
+            taskObject.description,
+            taskObject.dueDate,
+            taskObject.priority,
+            taskObject.notes,
+            checkboxElement.checked,
+        ));
     });
 
     return taskCard;
