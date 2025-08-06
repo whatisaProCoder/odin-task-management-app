@@ -102,7 +102,7 @@ export default class TaskManager {
         }
     }
 
-    getAllData() {
+    getAllProjects() {
         const projectsCopy = structuredClone(this.projects);
         return projectsCopy;
     }

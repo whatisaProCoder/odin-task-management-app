@@ -8,6 +8,8 @@ import blueHashtagIcon from "../../icons/blue_hashtag_icon.svg";
 import greenHashtagIcon from "../../icons/green_hashtag_icon.svg";
 import projectAddButton from "../../icons/project_add_button.svg";
 import blackHashtagIcon from "../../icons/black_hashtag_icon.svg";
+import TaskManager from "../core/taskManager"
+import createProjectPage from "./project_page";
 
 
 export default function initialiseSidebar() {
@@ -50,17 +52,41 @@ export default function initialiseSidebar() {
             Projects
             <img class="project-section-add-button" src="${projectAddButton}" alt="Add Projects">
         </div>
-        <div class="sidebar-item">
-            <img class="sidebar-item-icon" src="${blackHashtagIcon}">
-            Weather App
-        </div>
-        <div class="sidebar-item">
-            <img class="sidebar-item-icon" src="${blackHashtagIcon}">
-            Backend
-        </div>
-        <div class="sidebar-item">
-            <img class="sidebar-item-icon" src="${blackHashtagIcon}">
-            DSA
-        </div>
+        <div class="sidebar-projects"></div>
     `;
+
+    handleSidebarItemStates();
+
+    populateProjectSection();
+}
+
+function handleSidebarItemStates() {
+    const sidebarItems = document.querySelectorAll(".sidebar-item");
+    sidebarItems.forEach((item) => {
+        item.addEventListener("click", (event) => {
+            console.log(event.target);
+            sidebarItems.forEach((item) => {
+                item.classList.remove("sidebar-item-active");
+            });
+            item.classList.add("sidebar-item-active");
+        });
+    });
+}
+
+function populateProjectSection() {
+    const taskManager = new TaskManager();
+    for (const project of taskManager.getAllProjects()) {
+        const sidebarProjectElement = document.createElement("div");
+        sidebarProjectElement.innerHTML = /* html */ `
+            <div class="sidebar-item">
+                <img class="sidebar-item-icon" src="${blackHashtagIcon}">
+                ${project.projectName}
+            </div>
+        `;
+        sidebarProjectElement.addEventListener("click", (event) => {
+            console.log(event.target);
+            createProjectPage(project.projectID);
+        })
+        document.querySelector(".sidebar-projects").append(sidebarProjectElement);
+    }
 }

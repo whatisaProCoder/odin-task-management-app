@@ -91,6 +91,10 @@ body {
     border-color: #F8F8F8;
 }
 
+.sidebar-item-active:hover {
+    background-color: #F8F8F8;
+}
+
 .sidebar-item-icon {
     width: 1.125rem;
 }
