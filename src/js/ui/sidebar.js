@@ -55,9 +55,9 @@ export default function initialiseSidebar() {
         <div class="sidebar-projects"></div>
     `;
 
-    handleSidebarItemStates();
-
     populateProjectSection();
+
+    handleSidebarItemStates();
 }
 
 function handleSidebarItemStates() {
