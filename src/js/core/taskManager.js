@@ -37,6 +37,9 @@ export default class TaskManager {
 
     removeProject(projectID) {
         this.projects = this.projects.filter(project => project.projectID != projectID);
+        if (this.projects.length == 0) {
+            this.projects = this.getDummyData();
+        }
     }
 
     addTask(projectID, taskObject) {
@@ -90,6 +93,11 @@ export default class TaskManager {
         }
     }
 
+    getProject(projectID) {
+        const project = this.projects.filter((project) => project.projectID == projectID);
+        return project;
+    }
+
     getAllProjects() {
         const projectsCopy = structuredClone(this.projects);
         return projectsCopy;
@@ -101,6 +109,12 @@ export default class TaskManager {
 
         this.projects = this.getDummyData();
         this.updateStorage();
+    }
+
+    getAnyProjectID() {
+        for (const project of this.projects) {
+            return project.projectID;
+        }
     }
 
     getDummyData() {
@@ -115,7 +129,7 @@ export default class TaskManager {
                     dueDate: "10:30PM - 7/8/2025",
                     priority: "High",
                     notes: "Some notes you might want to add about this task, and so on.",
-                    complete: false
+                    complete: true
                 }
             ]
         }];

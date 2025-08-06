@@ -7,12 +7,19 @@ import "./styles.css";
 console.log("Application initialised!");
 
 const taskManager = new TaskManager();
-taskManager.clearAllData();
-// taskManager.addTask("aa999725-92b8-4ce5-855c-cb23a86ac00f", new Task(
+// taskManager.addTask("1fa42101-d7b4-4c79-8052-9768121fd2aa", new Task(
 //     "Second Task",
 //     "Decription of second task",
 //     "11:00PM - 22/8/2025",
 //     "Medium",
+//     "No notes.",
+//     false
+// ));
+// taskManager.addTask("1fa42101-d7b4-4c79-8052-9768121fd2aa", new Task(
+//     "Third Task",
+//     "Decription of third task",
+//     "11:50PM - 27/8/2025",
+//     "Low",
 //     "No notes.",
 //     false
 // ));

@@ -10,6 +10,7 @@ import projectAddButton from "../../icons/project_add_button.svg";
 import blackHashtagIcon from "../../icons/black_hashtag_icon.svg";
 import TaskManager from "../core/taskManager"
 import createProjectPage from "./project_page";
+import menuCloseIcon from "../../icons/menu_close_icon.svg";
 
 
 export default function initialiseSidebar() {
@@ -55,9 +56,26 @@ export default function initialiseSidebar() {
         <div class="sidebar-projects"></div>
     `;
 
+    const addProjectDialogBox = document.createElement("div");
+    addProjectDialogBox.innerHTML = /* html */ `
+        <dialog class="add-project-dialog-box" closeby="any" >
+            <div class="container">
+                <div class="dialog-header">
+                    Add Project
+                    <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
+                </div>
+
+            </div>
+        </dialog>
+    `;
+
+    document.body.append(addProjectDialogBox);
+
     populateProjectSection();
 
     handleSidebarItemStates();
+
+    handleProjectAddButton();
 }
 
 function handleSidebarItemStates() {
@@ -73,7 +91,9 @@ function handleSidebarItemStates() {
     });
 }
 
-function populateProjectSection() {
+export function populateProjectSection() {
+    const sidebarProjectsSection = document.querySelector(".sidebar-projects");
+    sidebarProjectsSection.innerHTML = ``;
     const taskManager = new TaskManager();
     for (const project of taskManager.getAllProjects()) {
         const sidebarProjectElement = document.createElement("div");
@@ -89,4 +109,22 @@ function populateProjectSection() {
         })
         document.querySelector(".sidebar-projects").append(sidebarProjectElement);
     }
+
+    handleSidebarItemStates();
+}
+
+function handleProjectAddButton() {
+    const projectAddButton = document.querySelector(".project-section-add-button");
+    const addProjectDialogBox = document.querySelector(".add-project-dialog-box");
+
+    projectAddButton.addEventListener("click", (event) => {
+        console.log(event.target);
+        addProjectDialogBox.showModal();
+    });
+
+    const menuCloseButton = addProjectDialogBox.querySelector(".menu-close-button");
+    menuCloseButton.addEventListener("click", (event) => {
+        console.log(event);
+        addProjectDialogBox.close();
+    });
 }

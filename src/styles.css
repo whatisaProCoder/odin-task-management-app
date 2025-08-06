@@ -227,3 +227,130 @@ body {
     color: #878787;
     margin-left: 0.4125rem;
 }
+
+dialog {
+    animation: fade-out 0.3s ease-out;
+}
+
+dialog:open {
+    animation: fade-in 0.3s ease-out;
+}
+
+dialog:open::backdrop {
+    animation: backdrop-fade-in 0.2s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        background-color: rgb(0 0 0 / 0%);
+    }
+
+    100% {
+        background-color: rgb(0 0 0 / 5%);
+    }
+}
+
+.menu-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    padding: 1.5rem;
+    width: 350px;
+    box-sizing: border-box;
+    background-color: #F8F8F8;
+    filter: drop-shadow(0px 46px 130px rgba(0, 0, 0, 35%));
+}
+
+.menu-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    ;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.menu-dialog-box>.container>.dialog-header>.menu-close-button {
+    height: 1.75rem;
+}
+
+.menu-dialog-box>.container>.menu-item {
+    padding: 0.5rem 1rem;
+    font-weight: 450;
+    border: 1px solid #DCDCDC;
+    user-select: none;
+}
+
+.menu-dialog-box>.container>.menu-item:hover {
+    background-color: #EEEEEE;
+}
+
+.add-project-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    padding: 1.5rem;
+    width: 350px;
+    box-sizing: border-box;
+    background-color: #F8F8F8;
+    filter: drop-shadow(0px 46px 130px rgba(0, 0, 0, 35%));
+}
+
+.add-project-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-project-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    ;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.add-project-dialog-box>.container>.dialog-header>.menu-close-button {
+    height: 1.75rem;
+}

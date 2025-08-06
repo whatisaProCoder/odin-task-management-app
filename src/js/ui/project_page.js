@@ -8,6 +8,8 @@ import greenHashtagIcon from "../../icons/green_hashtag_icon.svg";
 import redAlarmIcon from "../../icons/red_alarm_icon.svg";
 import blueAlarmIcon from "../../icons/blue_alarm_icon.svg";
 import greenAlarmIcon from "../../icons/green_alarm_icon.svg";
+import menuCloseIcon from "../../icons/menu_close_icon.svg";
+import { populateProjectSection } from "./sidebar";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -26,6 +28,17 @@ export default function createProjectPage(projectID) {
             <div class="project-name">${project.projectName}</div>
             <img class="project-menu" src="${menuIcon}">
         </div>
+        <dialog class="menu-dialog-box" closeby="any">
+            <div class="container">
+                <div class="dialog-header">
+                    Project Menu
+                    <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
+                </div>
+                <div class="menu-item" id="clear-project-tasks">Clear Tasks</div>
+                <div class="menu-item" id="delete-project">Delete Project</div>
+                <div class="menu-item" id="clear-all-data">Clear All Data</div>
+            </div>
+        </dialog>
         <div class="tasks"></div>
         <div class="add-task-item">
             <img class="blue-add-icon" src="${blueAddIcon}">
@@ -33,9 +46,49 @@ export default function createProjectPage(projectID) {
         </div>
     `;
 
+    handleMenuState(projectID);
     populateTasks(project.tasks);
 
     console.log("Project Page created for ID : ", projectID);
+}
+
+function handleMenuState(projectID) {
+    const menuButton = document.querySelector(".project-menu");
+    const projectMenuDialogBox = document.querySelector(".menu-dialog-box");
+
+    menuButton.addEventListener("click", (event) => {
+        console.log(event.target);
+        projectMenuDialogBox.showModal();
+    });
+
+    const menuCloseButton = projectMenuDialogBox.querySelector(".menu-close-button");
+    menuCloseButton.addEventListener("click", (event) => {
+        console.log(event);
+        projectMenuDialogBox.close();
+    });
+
+    projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", (event) => {
+        console.log(event.target);
+        taskManager.removeAllTasksInProject(projectID);
+        projectMenuDialogBox.close();
+        createProjectPage(projectID);
+    });
+
+    projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", (event) => {
+        console.log(event.target);
+        taskManager.removeProject(projectID);
+        projectMenuDialogBox.close();
+        populateProjectSection();
+        createProjectPage(taskManager.getAnyProjectID());
+    });
+
+    projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", (event) => {
+        console.log(event.target);
+        taskManager.clearAllData();
+        projectMenuDialogBox.close();
+        populateProjectSection();
+        createProjectPage(taskManager.getAnyProjectID());
+    });
 }
 
 function getRequiredColorAssets(priority) {
