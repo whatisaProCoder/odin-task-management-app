@@ -6,21 +6,7 @@ export default class TaskManager {
         this.storageManager = new StorageManager();
         this.projects = this.storageManager.getData("projects");
         if (this.projects == null) {
-            this.projects = [{
-                projectID: generateID(),
-                projectName: "Example Project",
-                tasks: [
-                    {
-                        taskID: generateID(),
-                        title: "Your Task Title",
-                        description: "A small description about this task, how you'll go about doing the task, etc.",
-                        dueDate: "10:30PM - 7/8/2025",
-                        priority: "High",
-                        notes: "Some notes you might want to add about this task, and so on.",
-                        complete: false
-                    }
-                ]
-            }];
+            this.projects = this.getDummyData();
             this.updateStorage();
         }
         console.log("TaskManager successfully initialised...");
@@ -112,6 +98,27 @@ export default class TaskManager {
     clearAllData() {
         this.storageManager.setData("projects", null);
         this.storageManager.clearAllStorage();
+
+        this.projects = this.getDummyData();
+        this.updateStorage();
+    }
+
+    getDummyData() {
+        return [{
+            projectID: generateID(),
+            projectName: "Example Project",
+            tasks: [
+                {
+                    taskID: generateID(),
+                    title: "Your Task Title",
+                    description: "A small description about this task, how you'll go about doing the task, etc.",
+                    dueDate: "10:30PM - 7/8/2025",
+                    priority: "High",
+                    notes: "Some notes you might want to add about this task, and so on.",
+                    complete: false
+                }
+            ]
+        }];
     }
 }
 
