@@ -12,6 +12,7 @@ import TaskManager from "../core/taskManager"
 import createProjectPage from "./project_page";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 
+const taskManager = new TaskManager();
 
 export default function initialiseSidebar() {
     const sidebarElement = document.querySelector(".sidebar");
@@ -58,13 +59,16 @@ export default function initialiseSidebar() {
 
     const addProjectDialogBox = document.createElement("div");
     addProjectDialogBox.innerHTML = /* html */ `
-        <dialog class="add-project-dialog-box" closeby="any" >
+        <dialog class="add-project-dialog-box" closeby="any">
             <div class="container">
                 <div class="dialog-header">
                     Add Project
                     <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
                 </div>
-
+                <input type="text" class="project-name-input" placeholder="Project Name">
+                <div class="button-group">
+                    <div class="submit-button">Save</div> 
+                </div>
             </div>
         </dialog>
     `;
@@ -94,7 +98,7 @@ function handleSidebarItemStates() {
 export function populateProjectSection() {
     const sidebarProjectsSection = document.querySelector(".sidebar-projects");
     sidebarProjectsSection.innerHTML = ``;
-    const taskManager = new TaskManager();
+
     for (const project of taskManager.getAllProjects()) {
         const sidebarProjectElement = document.createElement("div");
         sidebarProjectElement.innerHTML = /* html */ `
@@ -124,7 +128,20 @@ function handleProjectAddButton() {
 
     const menuCloseButton = addProjectDialogBox.querySelector(".menu-close-button");
     menuCloseButton.addEventListener("click", (event) => {
-        console.log(event);
+        console.log(event.target);
         addProjectDialogBox.close();
+        projectNameInput.value = "";
     });
+
+    const projectNameInput = addProjectDialogBox.querySelector(".project-name-input");
+    const submitButton = addProjectDialogBox.querySelector(".submit-button");
+
+    submitButton.addEventListener("click", (event) => {
+        console.log(event.target);
+        if (projectNameInput.value != "") {
+            taskManager.addProject(projectNameInput.value);
+            addProjectDialogBox.close();
+            populateProjectSection();
+        }
+    })
 }

@@ -16,6 +16,10 @@ export default class TaskManager {
         this.storageManager.setData("projects", this.projects);
     }
 
+    retriveLatest() {
+        this.projects = this.storageManager.getData("projects");
+    }
+
 
     addProject(projectName) {
         const projectObject = {
@@ -31,6 +35,7 @@ export default class TaskManager {
         for (const project of this.projects) {
             if (project.projectID == projectID) {
                 project.projectName = newName;
+                this.updateStorage();
             }
         }
     }
@@ -40,6 +45,8 @@ export default class TaskManager {
         if (this.projects.length == 0) {
             this.projects = this.getDummyData();
         }
+
+        this.updateStorage();
     }
 
     addTask(projectID, taskObject) {
@@ -94,11 +101,13 @@ export default class TaskManager {
     }
 
     getProject(projectID) {
+        this.retriveLatest();
         const project = this.projects.filter((project) => project.projectID == projectID);
         return project;
     }
 
     getAllProjects() {
+        this.retriveLatest();
         const projectsCopy = structuredClone(this.projects);
         return projectsCopy;
     }
@@ -112,6 +121,7 @@ export default class TaskManager {
     }
 
     getAnyProjectID() {
+        this.retriveLatest();
         for (const project of this.projects) {
             return project.projectID;
         }

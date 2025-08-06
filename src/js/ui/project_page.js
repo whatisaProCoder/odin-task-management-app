@@ -10,6 +10,7 @@ import blueAlarmIcon from "../../icons/blue_alarm_icon.svg";
 import greenAlarmIcon from "../../icons/green_alarm_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { populateProjectSection } from "./sidebar";
+import createBlankPage from "./black_page";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -34,11 +35,24 @@ export default function createProjectPage(projectID) {
                     Project Menu
                     <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
                 </div>
+                <div class="menu-item" id="rename-project">Rename Project</div>
                 <div class="menu-item" id="clear-project-tasks">Clear Tasks</div>
                 <div class="menu-item" id="delete-project">Delete Project</div>
                 <div class="menu-item" id="clear-all-data">Clear All Data</div>
             </div>
         </dialog>
+        <dialog class="rename-project-dialog-box" closeby="any">
+                    <div class="container">
+                        <div class="dialog-header">
+                            Rename Project
+                            <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
+                        </div>
+                        <input type="text" class="project-name-input" placeholder="New Project Name">
+                        <div class="button-group">
+                            <div class="submit-button">Save</div> 
+                        </div>
+                    </div>
+                </dialog>
         <div class="tasks"></div>
         <div class="add-task-item">
             <img class="blue-add-icon" src="${blueAddIcon}">
@@ -79,7 +93,7 @@ function handleMenuState(projectID) {
         taskManager.removeProject(projectID);
         projectMenuDialogBox.close();
         populateProjectSection();
-        createProjectPage(taskManager.getAnyProjectID());
+        createBlankPage();
     });
 
     projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", (event) => {
@@ -87,7 +101,35 @@ function handleMenuState(projectID) {
         taskManager.clearAllData();
         projectMenuDialogBox.close();
         populateProjectSection();
-        createProjectPage(taskManager.getAnyProjectID());
+        createBlankPage();
+    });
+
+    projectMenuDialogBox.querySelector("#rename-project").addEventListener("click", (event) => {
+        console.log(event.target);
+
+        projectMenuDialogBox.close();
+
+        const renameProjectDialogBox = document.querySelector(".rename-project-dialog-box");
+        renameProjectDialogBox.showModal();
+
+        const menuCloseButton = renameProjectDialogBox.querySelector(".menu-close-button");
+        menuCloseButton.addEventListener("click", (event) => {
+            renameProjectDialogBox.close();
+        });
+
+        const submitButton = renameProjectDialogBox.querySelector(".submit-button");
+        const projectInputField = renameProjectDialogBox.querySelector(".project-name-input");
+        submitButton.addEventListener("click", (event) => {
+            console.log(event.target);
+
+            if (projectInputField.value != "") {
+                renameProjectDialogBox.close();
+                taskManager.renameProject(projectID, projectInputField.value);
+                projectMenuDialogBox.close();
+                populateProjectSection();
+                createProjectPage(projectID);
+            }
+        });
     });
 }
 
