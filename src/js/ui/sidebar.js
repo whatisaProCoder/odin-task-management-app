@@ -129,8 +129,8 @@ function handleProjectAddButton() {
     const menuCloseButton = addProjectDialogBox.querySelector(".menu-close-button");
     menuCloseButton.addEventListener("click", (event) => {
         console.log(event.target);
-        addProjectDialogBox.close();
         projectNameInput.value = "";
+        addProjectDialogBox.close();
     });
 
     const projectNameInput = addProjectDialogBox.querySelector(".project-name-input");
