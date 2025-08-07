@@ -4,7 +4,6 @@ import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
 import Task from "../core/taskClass";
-import createProjectPage from "./project_page";
 
 const taskManager = new TaskManager();
 
@@ -129,8 +128,7 @@ function handleSaveAction(dialogBoxReference, projectID) {
             notesField.value,
             false
         ));
-        createProjectPage(projectID);
-
+        console.log("saving task...");
 
         dialogBoxReference.close();
     });
