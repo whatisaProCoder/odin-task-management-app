@@ -85,5 +85,11 @@ export function handleAddTaskDialogBox(triggerElementClass) {
         ${getProjectOptions()}
     `;
 
+    handleSaveAction();
+
     return addTaskDialogBox;
+}
+
+function handleSaveAction(dialogBoxReference) {
+    // start here...
 }
