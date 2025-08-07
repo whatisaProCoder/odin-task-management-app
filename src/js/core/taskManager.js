@@ -156,7 +156,7 @@ export default class TaskManager {
                     dueDate: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
                     priority: "High",
                     notes: "Some notes you might want to add about this task, and so on.",
-                    complete: true
+                    complete: false
                 }
             ]
         }];
