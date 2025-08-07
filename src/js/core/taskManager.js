@@ -97,9 +97,10 @@ export default class TaskManager {
     }
 
     removeTask(projectID, taskID) {
+        this.retriveLatest();
         for (const project of this.projects) {
             if (project.projectID == projectID) {
-                project.tasks = project.tasks.filter(task => task.taskID != taskID);
+                project.tasks = project.tasks.filter(task => task.taskID !== taskID);
                 this.updateStorage();
                 break;
             }

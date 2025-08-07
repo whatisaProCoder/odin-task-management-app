@@ -124,6 +124,11 @@ function handleSaveAction(dialogBoxReference, projectID) {
             return;
         }
 
+        if (priorityField.value == "") {
+            alert(("Select priority of this task..."));
+            return;
+        }
+
         if (projectID == null) {
             projectID = selectProjectInputField.value;
         }

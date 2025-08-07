@@ -42,8 +42,8 @@ export default function initialiseEditTaskDialogBox() {
                     </div>
                     <textarea id="notes-field" class="input-field"></textarea>
                     <div class="button-group">
-                        <div class="submit-button">Save</div> 
                         <div class="delete-button">Delete</div> 
+                        <div class="submit-button">Save</div> 
                     </div>
                 </div>
             </dialog>
@@ -132,7 +132,7 @@ function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
 function handleDeleteAction(dialogBoxReference, projectID, taskID) {
     const handleDelete = (event) => {
         console.log(event.target);
-        if (alert("Do you want to delete this task?")) {
+        if (confirm("Do you want to delete this task?")) {
             taskManager.removeTask(projectID, taskID);
             createProjectPage(projectID);
 
