@@ -82,7 +82,7 @@ export default function initialiseSidebar() {
 
     handleProjectAddButton();
 
-    handleAddTaskDialogBox(".add-task-button");
+    handleAddTaskDialogBox(".add-task-button", null);
 }
 
 function handleSidebarItemStates() {

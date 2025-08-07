@@ -3,6 +3,8 @@ import notesIcon from "../../icons/notes_icon.svg";
 import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
+import Task from "../core/taskClass";
+import createProjectPage from "./project_page";
 
 const taskManager = new TaskManager();
 
@@ -33,9 +35,9 @@ export default function initialiseAddTaskDialogBox() {
                     </div>
                     <select type="text" id="select-priority" class="input-field">
                         <option value="" disabled selected hidden>Select Level</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
+                        <option value="High" selected>High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
                     </select>
                     <div class="icon-label-container">
                         <img src="${notesIcon}">
@@ -57,8 +59,6 @@ export function handleAddTaskDialogBox(triggerElementClass, projectID) {
     const trigger = document.querySelector(triggerElementClass);
     const selectProjectInputField = addTaskDialogBox.querySelector("#select-project");
 
-
-
     trigger.addEventListener("click", (event) => {
         console.log(event.target);
         renderProjectField();
@@ -69,40 +69,76 @@ export function handleAddTaskDialogBox(triggerElementClass, projectID) {
     closeButton.addEventListener("click", (event) => {
         console.log(event.target);
         addTaskDialogBox.close();
+        clearAllInputFields();
     })
 
-    const getProjectOptions = () => {
-        const container = document.createElement("div");
-        const projects = taskManager.getAllProjects();
-        for (const project of projects) {
-            const option = document.createElement("option");
-            option.value = project.projectID;
-            option.textContent = project.projectName;
-            container.append(option);
-        }
-        return container.innerHTML;
-    }
-
-    const renderProjectField = () => {
-        if (projectID != undefined) {
+    function renderProjectField() {
+        if (projectID != null) {
             selectProjectInputField.value = taskManager.getProject(projectID).projectName;
         }
 
-        selectProjectInputField.innerHTML = /* html */ `
-        <option value="" disabled ${projectID == undefined ? "selected" : ""} hidden>Select Project</option>
-        ${getProjectOptions()}
-    `;
-    }
+        const getProjectOptions = () => {
+            const container = document.createElement("div");
+            const projects = taskManager.getAllProjects();
+            for (const project of projects) {
+                const option = document.createElement("option");
+                option.value = project.projectID;
+                option.textContent = project.projectName;
+                if (projectID === project.projectID) {
+                    option.selected = true;
+                }
+                container.append(option);
+            }
+            return container;
+        }
 
-    handleSaveAction(addTaskDialogBox);
+        selectProjectInputField.innerHTML = /* html */ `
+            <option value="" disabled ${projectID === null ? "selected" : ""} hidden>Select Project</option>
+        `;
+        selectProjectInputField.append(getProjectOptions());
+    };
+
+    handleSaveAction(addTaskDialogBox, projectID);
 
     return addTaskDialogBox;
 }
 
-function handleSaveAction(dialogBoxReference) {
+function handleSaveAction(dialogBoxReference, projectID) {
     const selectProjectInputField = dialogBoxReference.querySelector("#select-project");
     const titleInputField = dialogBoxReference.querySelector("#title-field");
     const descriptionField = dialogBoxReference.querySelector("#description-field");
     const dueDateField = dialogBoxReference.querySelector("#due-date-field");
+    const priorityField = dialogBoxReference.querySelector("#select-priority");
+    const notesField = dialogBoxReference.querySelector("#notes-field");
 
+
+    const submitButton = dialogBoxReference.querySelector(".submit-button");
+    submitButton.addEventListener("click", (event) => {
+        console.log(event.target);
+
+        // saving to database
+        if (projectID == null) {
+            projectID = selectProjectInputField.value;
+        }
+
+        taskManager.addTask(projectID, new Task(
+            titleInputField.value,
+            descriptionField.value,
+            dueDateField.value,
+            priorityField.value,
+            notesField.value,
+            false
+        ));
+        createProjectPage(projectID);
+
+
+        dialogBoxReference.close();
+    });
+}
+
+function clearAllInputFields() {
+    const allInputFields = document.querySelectorAll(".input-field");
+    allInputFields.forEach(inputField => {
+        inputField.value = "";
+    });
 }
