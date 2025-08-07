@@ -35,7 +35,8 @@ export default function initialiseAddTaskDialogBox() {
                         <div class="input-field-label">Priority</div>
                     </div>
                     <select type="text" id="select-priority" class="input-field">
-                        <option value="High" selected>High</option>
+                        <option value="" selected disabled hidden>Select Level</option>
+                        <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
                     </select>

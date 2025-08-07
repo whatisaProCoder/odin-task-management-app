@@ -191,6 +191,10 @@ body {
     position: relative;
 }
 
+.task-card:hover {
+    background-color: #eeeeee;
+}
+
 .task-card>.upper-row {
     display: flex;
     flex-direction: row;
