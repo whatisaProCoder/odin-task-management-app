@@ -456,3 +456,96 @@ dialog:open::backdrop {
 .rename-project-dialog-box>.container>.button-group>.submit-button:active {
     background-color: #2361ff;
 }
+
+.add-task-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    padding: 1.5rem;
+    width: 350px;
+    box-sizing: border-box;
+    background-color: #F8F8F8;
+    filter: drop-shadow(0px 46px 130px rgba(0, 0, 0, 35%));
+}
+
+.add-task-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-task-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    ;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.add-task-dialog-box>.container>.dialog-header>.menu-close-button {
+    height: 1.75rem;
+}
+
+.add-task-dialog-box>.container>.input-field-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #505050;
+    margin: 0.25rem 0rem;
+}
+
+.add-task-dialog-box>.container>.input-field {
+    padding: 0.5rem 0.875rem;
+    font-size: 1rem;
+    border: 1px solid #E1E1E1;
+    border-radius: 0.25rem;
+    outline: none;
+    background-color: #EEEEEE;
+    color: #1E1E1E;
+    margin-bottom: 0.75rem;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Custom dropdown arrow */
+    background-image: url("../src/icons/drop_down_arrow.svg");
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 20px 20px;
+    /* <-- make arrow bigger */
+}
+
+textarea {
+    resize: vertical;
+}
+
+.add-task-dialog-box>.container>.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 0.875rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
+
+.add-task-dialog-box>.container>.button-group>.submit-button {
+    border: 1px solid #E1E1E1;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    background-color: #4076FF;
+    color: #F8F8F8;
+    user-select: none;
+    margin-right: 1px;
+}
+
+.add-task-dialog-box>.container>.button-group>.submit-button:active {
+    background-color: #2361ff;
+}
