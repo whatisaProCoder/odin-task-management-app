@@ -130,7 +130,7 @@ export default class TaskManager {
     getDummyData() {
         return [{
             projectID: generateID(),
-            projectName: "Example Project",
+            projectName: "Starter Project",
             tasks: [
                 {
                     taskID: generateID(),

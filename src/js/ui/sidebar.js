@@ -11,6 +11,7 @@ import blackHashtagIcon from "../../icons/black_hashtag_icon.svg";
 import TaskManager from "../core/taskManager"
 import createProjectPage from "./project_page";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
+import { handleAddTaskDialogBox } from "./add_task_dialog";
 
 const taskManager = new TaskManager();
 
@@ -80,6 +81,8 @@ export default function initialiseSidebar() {
     handleSidebarItemStates();
 
     handleProjectAddButton();
+
+    handleAddTaskDialogBox(".add-task-button");
 }
 
 function handleSidebarItemStates() {

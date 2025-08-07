@@ -491,22 +491,38 @@ dialog:open::backdrop {
     height: 1.75rem;
 }
 
-.add-task-dialog-box>.container>.input-field-label {
+.input-field-label {
     font-weight: 600;
     font-size: 0.875rem;
     color: #505050;
     margin: 0.25rem 0rem;
 }
 
-.add-task-dialog-box>.container>.input-field {
+.input-field {
     padding: 0.5rem 0.875rem;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     border: 1px solid #E1E1E1;
     border-radius: 0.25rem;
     outline: none;
     background-color: #EEEEEE;
     color: #1E1E1E;
     margin-bottom: 0.75rem;
+}
+
+.icon-label-container {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.icon-label-container>img {
+    height: 1.125rem;
+}
+
+.icon-label-container>div {
+    font-size: 0.75rem;
 }
 
 select {
@@ -524,6 +540,7 @@ select {
 
 textarea {
     resize: vertical;
+    font-family: "Inter";
 }
 
 .add-task-dialog-box>.container>.button-group {
@@ -548,4 +565,32 @@ textarea {
 
 .add-task-dialog-box>.container>.button-group>.submit-button:active {
     background-color: #2361ff;
+}
+
+.welcome-page {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding: 2.5rem;
+}
+
+.welcome-page>.text {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #1E1E1E;
+    word-spacing: 0.125rem;
+}
+
+.welcome-page>.text>span {
+    text-decoration: underline;
+    color: #4076FF;
+}
+
+.welcome-page>.subtext {
+    font-size: 0.85rem;
+    color: #505050;
+    font-weight: 700;
 }

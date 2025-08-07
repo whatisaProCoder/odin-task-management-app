@@ -11,6 +11,7 @@ import greenAlarmIcon from "../../icons/green_alarm_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { populateProjectSection } from "./sidebar";
 import createBlankPage from "./black_page";
+import { handleAddTaskDialogBox } from "../ui/add_task_dialog";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -53,24 +54,6 @@ export default function createProjectPage(projectID) {
                 </div>
             </div>
         </dialog>
-        <dialog class="add-task-dialog-box scroll-container" closeby="any">
-            <div class="container">
-                <div class="dialog-header">
-                    Add Task
-                    <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
-                </div>
-                <div class="input-field-label">Project</div>
-                <select type="text" id="select-project" class="input-field">
-                </select>
-                <div class="input-field-label">Title</div>
-                <input type="text" id="title-field" class="input-field">
-                <div class="input-field-label">Description</div>
-                <textarea id="description-field" class="input-field"></textarea>
-                <div class="button-group">
-                    <div class="submit-button">Save</div> 
-                </div>
-            </div>
-        </dialog>
         <div class="tasks"></div>
         <div class="add-task-item">
             <img class="blue-add-icon" src="${blueAddIcon}">
@@ -80,7 +63,8 @@ export default function createProjectPage(projectID) {
 
     handleMenuState(projectID);
     populateTasks(project.tasks);
-    handleAddTaskDialogBox(projectID);
+
+    handleAddTaskDialogBox(".add-task-item");
 
     console.log("Project Page created for ID : ", projectID);
 }
@@ -102,25 +86,31 @@ function handleMenuState(projectID) {
 
     projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", (event) => {
         console.log(event.target);
-        taskManager.removeAllTasksInProject(projectID);
-        projectMenuDialogBox.close();
-        createProjectPage(projectID);
+        if (confirm("Do you want to delete all tasks in this project?")) {
+            taskManager.removeAllTasksInProject(projectID);
+            projectMenuDialogBox.close();
+            createProjectPage(projectID);
+        }
     });
 
     projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", (event) => {
         console.log(event.target);
-        taskManager.removeProject(projectID);
-        projectMenuDialogBox.close();
-        populateProjectSection();
-        createBlankPage();
+        if (confirm("Do you want to delete this project?")) {
+            taskManager.removeProject(projectID);
+            projectMenuDialogBox.close();
+            populateProjectSection();
+            createBlankPage();
+        }
     });
 
     projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", (event) => {
         console.log(event.target);
-        taskManager.clearAllData();
-        projectMenuDialogBox.close();
-        populateProjectSection();
-        createBlankPage();
+        if (confirm("Do you want to factory reset?")) {
+            taskManager.clearAllData();
+            projectMenuDialogBox.close();
+            populateProjectSection();
+            createBlankPage();
+        }
     });
 
     projectMenuDialogBox.querySelector("#rename-project").addEventListener("click", (event) => {
@@ -207,38 +197,4 @@ function populateTasks(tasksArray) {
     tasksArray.forEach(taskObject => {
         tasksContainer.append(createTaskCard(taskObject));
     });
-}
-
-function handleAddTaskDialogBox(projectID) {
-    const addTaskDialogBox = document.querySelector(".add-task-dialog-box");
-    const addTaskItem = document.querySelector(".add-task-item");
-
-    addTaskItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        addTaskDialogBox.showModal();
-    })
-
-    const closeButton = addTaskDialogBox.querySelector(".menu-close-button");
-    closeButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        addTaskDialogBox.close();
-    })
-
-    const getProjectOptions = () => {
-        const container = document.createElement("div");
-        const projects = taskManager.getAllProjects();
-        for (const project of projects) {
-            const option = document.createElement("option");
-            option.value = project.projectID;
-            option.textContent = project.projectName;
-            container.append(option);
-        }
-        return container.innerHTML;
-    }
-
-    const selectProjectInputField = document.querySelector("#select-project");
-    selectProjectInputField.innerHTML = /* html */ `
-        <option value="" disabled selected hidden>Select Project</option>
-        ${getProjectOptions()}
-    `;
 }

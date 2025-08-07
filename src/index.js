@@ -3,6 +3,8 @@ import setupScrollbars from "./js/ui/scrollbar";
 import initialiseSidebar from "./js/ui/sidebar";
 import Task from "./js/core/taskClass";
 import "./styles.css";
+import createWelcomePage from "./js/ui/welcome_page";
+import initialiseAddTaskDialogBox from "./js/ui/add_task_dialog";
 
 console.log("Application initialised!");
 
@@ -24,6 +26,10 @@ const taskManager = new TaskManager();
 //     false
 // ));
 
+initialiseAddTaskDialogBox();
+
 initialiseSidebar();
+
+createWelcomePage();
 
 setupScrollbars();
