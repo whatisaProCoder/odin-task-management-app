@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^4.1.0",
     "pretty-print-json": "^3.0.5",
     "smooth-scrollbar": "^8.8.4",
     "webpack": "^5.99.9",

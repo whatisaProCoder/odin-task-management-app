@@ -4,6 +4,8 @@ import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
 import Task from "../core/taskClass";
+import createProjectPage from "./project_page";
+import { compareAsc, format } from "date-fns";
 
 const taskManager = new TaskManager();
 
@@ -33,7 +35,6 @@ export default function initialiseAddTaskDialogBox() {
                         <div class="input-field-label">Priority</div>
                     </div>
                     <select type="text" id="select-priority" class="input-field">
-                        <option value="" disabled selected hidden>Select Level</option>
                         <option value="High" selected>High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
@@ -65,7 +66,9 @@ export function handleAddTaskDialogBox(triggerElementClass, projectID) {
     })
 
     const closeButton = addTaskDialogBox.querySelector(".menu-close-button");
-    closeButton.addEventListener("click", (event) => {
+    const cloneCloseButton = closeButton.cloneNode(true);
+    closeButton.replaceWith(cloneCloseButton);
+    cloneCloseButton.addEventListener("click", (event) => {
         console.log(event.target);
         addTaskDialogBox.close();
         clearAllInputFields();
@@ -98,8 +101,6 @@ export function handleAddTaskDialogBox(triggerElementClass, projectID) {
     };
 
     handleSaveAction(addTaskDialogBox, projectID);
-
-    return addTaskDialogBox;
 }
 
 function handleSaveAction(dialogBoxReference, projectID) {
@@ -110,12 +111,19 @@ function handleSaveAction(dialogBoxReference, projectID) {
     const priorityField = dialogBoxReference.querySelector("#select-priority");
     const notesField = dialogBoxReference.querySelector("#notes-field");
 
-
-    const submitButton = dialogBoxReference.querySelector(".submit-button");
-    submitButton.addEventListener("click", (event) => {
+    const handleSubmit = (event) => {
         console.log(event.target);
 
-        // saving to database
+        if (titleInputField.value == "") {
+            alert("Enter title of the task!");
+            return;
+        }
+
+        if (dueDateField.value == "") {
+            alert("Please select date and time of deadline.")
+            return;
+        }
+
         if (projectID == null) {
             projectID = selectProjectInputField.value;
         }
@@ -128,10 +136,17 @@ function handleSaveAction(dialogBoxReference, projectID) {
             notesField.value,
             false
         ));
-        console.log("saving task...");
+        createProjectPage(projectID);
+        clearAllInputFields();
 
         dialogBoxReference.close();
-    });
+    };
+
+    const submitButton = dialogBoxReference.querySelector(".submit-button");
+    const cloneSubmitButton = submitButton.cloneNode(true);
+    submitButton.replaceWith(cloneSubmitButton);
+
+    cloneSubmitButton.addEventListener("click", handleSubmit);
 }
 
 function clearAllInputFields() {

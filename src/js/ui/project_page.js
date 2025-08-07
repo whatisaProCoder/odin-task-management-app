@@ -1,4 +1,4 @@
-import Task from "../core/taskClass";
+import Task, { ExistingTask } from "../core/taskClass";
 import TaskManager from "../core/taskManager";
 import menuIcon from "../../icons/menu_icon.svg";
 import blueAddIcon from "../../icons/blue_add_icon.svg";
@@ -12,6 +12,9 @@ import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { populateProjectSection } from "./sidebar";
 import createBlankPage from "./black_page";
 import { handleAddTaskDialogBox } from "../ui/add_task_dialog";
+import { compareAsc, format } from "date-fns";
+import { openEditTaskDialogBox } from "./edit_task_dialog";
+import editIcon from "../../icons/edit_icon.svg";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -62,7 +65,7 @@ export default function createProjectPage(projectID) {
     `;
 
     handleMenuState(projectID);
-    populateTasks(project.tasks);
+    populateTasks(projectID, project.tasks);
 
     handleAddTaskDialogBox(".add-task-item", projectID);
 
@@ -80,7 +83,7 @@ function handleMenuState(projectID) {
 
     const menuCloseButton = projectMenuDialogBox.querySelector(".menu-close-button");
     menuCloseButton.addEventListener("click", (event) => {
-        console.log(event);
+        console.log(event.target);
         projectMenuDialogBox.close();
     });
 
@@ -154,7 +157,7 @@ function getRequiredColorAssets(priority) {
     return returnObject;
 }
 
-function createTaskCard(taskObject) {
+function createTaskCard(projectID, taskObject) {
     const taskCard = document.createElement("div");
     taskCard.classList.add("task-card");
 
@@ -170,14 +173,16 @@ function createTaskCard(taskObject) {
         </div>
         <div class="lower-row">
             <img class="task-alarm-icon" src="${assets.alarmIcon}">
-            <div class="task-due-date">${taskObject.dueDate}</div>
+            <div class="task-due-date">${format(new Date(taskObject.dueDate), "hh:mm aa - dd/MM/yyyy")}</div>
         </div>
+        <img src=${editIcon} class="edit-button">
     `;
 
     const checkboxElement = taskCard.querySelector(`.task-card-checkbox`);
     checkboxElement.addEventListener("click", (event) => {
         console.log(event.target);
-        taskManager.updateTask(taskObject.taskID, new Task(
+        taskManager.updateTask(taskObject.taskID, new ExistingTask(
+            taskObject.taskID,
             taskObject.title,
             taskObject.description,
             taskObject.dueDate,
@@ -187,14 +192,20 @@ function createTaskCard(taskObject) {
         ));
     });
 
+    const editButton = taskCard.querySelector(".edit-button");
+    editButton.addEventListener("click", (event) => {
+        console.log(event.target);
+        openEditTaskDialogBox(projectID, taskObject.taskID);
+    });
+
     return taskCard;
 }
 
-function populateTasks(tasksArray) {
+function populateTasks(projectID, tasksArray) {
     const tasksContainer = document.querySelector(".tasks");
     tasksContainer.innerHTML = ``;
 
     tasksArray.forEach(taskObject => {
-        tasksContainer.append(createTaskCard(taskObject));
+        tasksContainer.append(createTaskCard(projectID, taskObject));
     });
 }

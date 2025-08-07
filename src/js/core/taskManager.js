@@ -1,5 +1,6 @@
 import StorageManager from "./storageModule";
 import generateID from "./cryptography";
+import { format, compareAsc } from "date-fns";
 
 export default class TaskManager {
     constructor() {
@@ -9,7 +10,7 @@ export default class TaskManager {
             this.projects = this.getDummyData();
             this.updateStorage();
         }
-        console.log("TaskManager successfully initialised...");
+        console.log("TaskManager module object created...");
     }
 
     updateStorage() {
@@ -50,6 +51,7 @@ export default class TaskManager {
     }
 
     addTask(projectID, taskObject) {
+        this.retriveLatest();
         let flag = 0;
         for (const project of this.projects) {
             if (project.projectID == projectID) {
@@ -62,6 +64,20 @@ export default class TaskManager {
         if (flag == 0) {
             throw new Error("Tried to add taskObject to invalid project");
         }
+    }
+
+    getTask(projectID, taskID) {
+        this.retriveLatest();
+        for (const project of this.projects) {
+            if (project.projectID == projectID) {
+                for (const task of project.tasks) {
+                    if (task.taskID == taskID) {
+                        return task;
+                    }
+                }
+            }
+        }
+        throw new Error("No such task exist...");
     }
 
     updateTask(taskID, updatedTaskObject) {
@@ -136,7 +152,7 @@ export default class TaskManager {
                     taskID: generateID(),
                     title: "Your Task Title",
                     description: "A small description about this task, how you'll go about doing the task, etc.",
-                    dueDate: "10:30PM - 7/8/2025",
+                    dueDate: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
                     priority: "High",
                     notes: "Some notes you might want to add about this task, and so on.",
                     complete: true

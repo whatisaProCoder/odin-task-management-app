@@ -3,21 +3,21 @@ import notesIcon from "../../icons/notes_icon.svg";
 import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
+import Task, { ExistingTask } from "../core/taskClass";
+import createProjectPage from "./project_page";
+import { compareAsc, format } from "date-fns";
 
 const taskManager = new TaskManager();
 
-export default function initialiseAddTaskDialogBox() {
-    const addTaskDialogBox = document.createElement("div");
-    addTaskDialogBox.innerHTML = /* html */ `
-                    <dialog class="add-task-dialog-box" closeby="any">
+export default function initialiseEditTaskDialogBox() {
+    const editTaskDialogBox = document.createElement("div");
+    editTaskDialogBox.innerHTML = /* html */ `
+                    <dialog class="edit-task-dialog-box" closeby="any">
                 <div class="container">
                     <div class="dialog-header">
-                        Add Task
+                        Edit Task
                         <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
                     </div>
-                    <div class="input-field-label">Project</div>
-                    <select type="text" id="select-project" class="input-field">
-                    </select>
                     <div class="input-field-label">Title</div>
                     <input type="text" id="title-field" class="input-field">
                     <div class="input-field-label">Description</div>
@@ -32,10 +32,9 @@ export default function initialiseAddTaskDialogBox() {
                         <div class="input-field-label">Priority</div>
                     </div>
                     <select type="text" id="select-priority" class="input-field">
-                        <option value="" disabled selected hidden>Select Level</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
                     </select>
                     <div class="icon-label-container">
                         <img src="${notesIcon}">
@@ -44,52 +43,114 @@ export default function initialiseAddTaskDialogBox() {
                     <textarea id="notes-field" class="input-field"></textarea>
                     <div class="button-group">
                         <div class="submit-button">Save</div> 
+                        <div class="delete-button">Delete</div> 
                     </div>
                 </div>
             </dialog>
     `;
 
-    document.body.append(addTaskDialogBox);
+    document.body.append(editTaskDialogBox);
 }
 
-export function handleAddTaskDialogBox(triggerElementClass) {
-    const addTaskDialogBox = document.querySelector(".add-task-dialog-box");
-    const trigger = document.querySelector(triggerElementClass);
+export function openEditTaskDialogBox(projectID, taskID) {
+    const editTaskDialogBox = document.querySelector(".edit-task-dialog-box");
+    const titleInputField = editTaskDialogBox.querySelector("#title-field");
+    const descriptionField = editTaskDialogBox.querySelector("#description-field");
+    const dueDateField = editTaskDialogBox.querySelector("#due-date-field");
+    const priorityField = editTaskDialogBox.querySelector("#select-priority");
+    const notesField = editTaskDialogBox.querySelector("#notes-field");
 
-    trigger.addEventListener("click", (event) => {
+    const task = taskManager.getTask(projectID, taskID);
+
+    titleInputField.value = task.title;
+    descriptionField.value = task.description;
+    dueDateField.value = task.dueDate;
+    priorityField.value = task.priority;
+    notesField.value = task.notes;
+
+    const closeButton = editTaskDialogBox.querySelector(".menu-close-button");
+    const cloneCloseButton = closeButton.cloneNode(true);
+    closeButton.replaceWith(cloneCloseButton);
+    cloneCloseButton.addEventListener("click", (event) => {
         console.log(event.target);
-        addTaskDialogBox.showModal();
-    })
+        editTaskDialogBox.close();
+        clearAllInputFields();
+    });
 
-    const closeButton = addTaskDialogBox.querySelector(".menu-close-button");
-    closeButton.addEventListener("click", (event) => {
+    editTaskDialogBox.showModal();
+
+    handleSaveAction(editTaskDialogBox, projectID, taskID, task.complete);
+    handleDeleteAction(editTaskDialogBox, projectID, taskID);
+}
+
+function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
+    const titleInputField = dialogBoxReference.querySelector("#title-field");
+    const descriptionField = dialogBoxReference.querySelector("#description-field");
+    const dueDateField = dialogBoxReference.querySelector("#due-date-field");
+    const priorityField = dialogBoxReference.querySelector("#select-priority");
+    const notesField = dialogBoxReference.querySelector("#notes-field");
+
+    const handleSubmit = (event) => {
         console.log(event.target);
-        addTaskDialogBox.close();
-    })
 
-    const getProjectOptions = () => {
-        const container = document.createElement("div");
-        const projects = taskManager.getAllProjects();
-        for (const project of projects) {
-            const option = document.createElement("option");
-            option.value = project.projectID;
-            option.textContent = project.projectName;
-            container.append(option);
+        if (titleInputField.value == "") {
+            alert("Enter title of the task!");
+            return;
         }
-        return container.innerHTML;
-    }
 
-    const selectProjectInputField = document.querySelector("#select-project");
-    selectProjectInputField.innerHTML = /* html */ `
-        <option value="" disabled selected hidden>Select Project</option>
-        ${getProjectOptions()}
-    `;
+        if (dueDateField.value == "") {
+            alert("Please select date and time of deadline.")
+            return;
+        }
 
-    handleSaveAction();
+        if (projectID == null) {
+            projectID = selectProjectInputField.value;
+        }
 
-    return addTaskDialogBox;
+        taskManager.updateTask(taskID, new ExistingTask(
+            taskID,
+            titleInputField.value,
+            descriptionField.value,
+            dueDateField.value,
+            priorityField.value,
+            notesField.value,
+            complete
+        ));
+        createProjectPage(projectID);
+        clearAllInputFields();
+
+        dialogBoxReference.close();
+    };
+
+    const submitButton = dialogBoxReference.querySelector(".submit-button");
+    const cloneSubmitButton = submitButton.cloneNode(true);
+    submitButton.replaceWith(cloneSubmitButton);
+
+    cloneSubmitButton.addEventListener("click", handleSubmit);
 }
 
-function handleSaveAction(dialogBoxReference) {
-    // start here...
+function handleDeleteAction(dialogBoxReference, projectID, taskID) {
+    const handleDelete = (event) => {
+        console.log(event.target);
+        if (alert("Do you want to delete this task?")) {
+            taskManager.removeTask(projectID, taskID);
+            createProjectPage(projectID);
+
+            clearAllInputFields();
+            dialogBoxReference.close();
+        }
+    };
+
+    const deleteButton = dialogBoxReference.querySelector(".delete-button");
+    const cloneDeleteButton = deleteButton.cloneNode(true);
+    deleteButton.replaceWith(cloneDeleteButton);
+
+    cloneDeleteButton.addEventListener("click", handleDelete);
+}
+
+function clearAllInputFields() {
+    const allInputFields = document.querySelectorAll(".input-field");
+    allInputFields.forEach(inputField => {
+        inputField.value = "";
+    });
 }
