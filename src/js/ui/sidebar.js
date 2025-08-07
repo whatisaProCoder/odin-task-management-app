@@ -123,6 +123,8 @@ export function populateProjectSection() {
 function handleProjectAddButton() {
     const projectAddButton = document.querySelector(".project-section-add-button");
     const addProjectDialogBox = document.querySelector(".add-project-dialog-box");
+    const projectNameInput = addProjectDialogBox.querySelector(".project-name-input");
+    const submitButton = addProjectDialogBox.querySelector(".submit-button");
 
     projectAddButton.addEventListener("click", (event) => {
         console.log(event.target);
@@ -132,18 +134,16 @@ function handleProjectAddButton() {
     const menuCloseButton = addProjectDialogBox.querySelector(".menu-close-button");
     menuCloseButton.addEventListener("click", (event) => {
         console.log(event.target);
-        projectNameInput.textContent = "";
         addProjectDialogBox.close();
+        projectNameInput.value = "";
     });
-
-    const projectNameInput = addProjectDialogBox.querySelector(".project-name-input");
-    const submitButton = addProjectDialogBox.querySelector(".submit-button");
 
     submitButton.addEventListener("click", (event) => {
         console.log(event.target);
         if (projectNameInput.value != "") {
             taskManager.addProject(projectNameInput.value);
             addProjectDialogBox.close();
+            projectNameInput.value = "";
             populateProjectSection();
         }
     })

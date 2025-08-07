@@ -15,7 +15,7 @@ export default function initialiseAddTaskDialogBox() {
                         Add Task
                         <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
                     </div>
-                    <div class="input-field-label" id="select-project-label">Project</div>
+                    <div class="input-field-label">Project</div>
                     <select type="text" id="select-project" class="input-field">
                     </select>
                     <div class="input-field-label">Title</div>
@@ -52,16 +52,12 @@ export default function initialiseAddTaskDialogBox() {
     document.body.append(addTaskDialogBox);
 }
 
-export function handleAddTaskDialogBox(triggerElementClass, projectID) {
+export function handleAddTaskDialogBox(triggerElementClass) {
     const addTaskDialogBox = document.querySelector(".add-task-dialog-box");
     const trigger = document.querySelector(triggerElementClass);
-    const selectProjectInputField = addTaskDialogBox.querySelector("#select-project");
-
-
 
     trigger.addEventListener("click", (event) => {
         console.log(event.target);
-        renderProjectField();
         addTaskDialogBox.showModal();
     })
 
@@ -83,26 +79,17 @@ export function handleAddTaskDialogBox(triggerElementClass, projectID) {
         return container.innerHTML;
     }
 
-    const renderProjectField = () => {
-        if (projectID != undefined) {
-            selectProjectInputField.value = taskManager.getProject(projectID).projectName;
-        }
-
-        selectProjectInputField.innerHTML = /* html */ `
-        <option value="" disabled ${projectID == undefined ? "selected" : ""} hidden>Select Project</option>
+    const selectProjectInputField = document.querySelector("#select-project");
+    selectProjectInputField.innerHTML = /* html */ `
+        <option value="" disabled selected hidden>Select Project</option>
         ${getProjectOptions()}
     `;
-    }
 
-    handleSaveAction(addTaskDialogBox);
+    handleSaveAction();
 
     return addTaskDialogBox;
 }
 
 function handleSaveAction(dialogBoxReference) {
-    const selectProjectInputField = dialogBoxReference.querySelector("#select-project");
-    const titleInputField = dialogBoxReference.querySelector("#title-field");
-    const descriptionField = dialogBoxReference.querySelector("#description-field");
-    const dueDateField = dialogBoxReference.querySelector("#due-date-field");
-
+    // start here...
 }

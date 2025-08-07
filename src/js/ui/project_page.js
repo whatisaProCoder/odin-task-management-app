@@ -64,7 +64,7 @@ export default function createProjectPage(projectID) {
     handleMenuState(projectID);
     populateTasks(project.tasks);
 
-    handleAddTaskDialogBox(".add-task-item");
+    handleAddTaskDialogBox(".add-task-item", projectID);
 
     console.log("Project Page created for ID : ", projectID);
 }
