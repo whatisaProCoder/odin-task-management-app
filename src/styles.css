@@ -175,6 +175,10 @@ body {
     padding-left: 0.5rem;
 }
 
+.project-page>.add-task-item:hover {
+    background-color: #f3f3f3;
+}
+
 .project-page>.add-task-item>.blue-add-icon {
     height: 1rem;
     aspect-ratio: 1/1;
@@ -192,7 +196,7 @@ body {
 }
 
 .task-card:hover {
-    background-color: #eeeeee;
+    background-color: #f3f3f3;
 }
 
 .task-card>.upper-row {
