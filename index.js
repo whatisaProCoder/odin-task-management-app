@@ -1,29 +1,35 @@
 const { app, BrowserWindow } = require('electron');
-
-let win;
+const path = require('path');
 
 function createWindow() {
-    win = new BrowserWindow({
+    const win = new BrowserWindow({
         width: 1200,
         height: 800,
+        titleBarStyle: "hidden",
         frame: true,
+        icon: path.join(__dirname, 'src', 'icons', 'favicon.png'),
         webPreferences: {
             contextIsolation: true,
-            preload: path.join(__dirname, 'preload.js'),
-        }
+            nodeIntegration: false
+        },
     });
 
     win.loadFile(path.join(__dirname, 'dist', 'index.html'));
-    win.removeMenu();
-    win.webContents.openDevTools();
+
+    // Optional: open devtools for debugging
+    // win.webContents.openDevTools();
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+    createWindow();
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+    app.on('activate', () => {
+        // On macOS, re-create window when dock icon is clicked and no other windows open
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
 });
 
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+// Quit app when all windows closed, except on macOS
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit();
 });
