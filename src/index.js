@@ -18,8 +18,6 @@ setupScrollbars();
 
 console.log("Application successfully initialised!");
 
-// electron-app custom-title-bar
-if (typeof window !== 'undefined' && window.process?.versions?.electron) {
-    require('./electron-ui.js');
-}
+
+
 

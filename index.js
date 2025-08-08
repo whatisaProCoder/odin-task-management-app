@@ -1,20 +1,21 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
+
+let win;
 
 function createWindow() {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 1200,
         height: 800,
-        icon: path.join(__dirname, 'src', 'icons', 'favicon.png'),
+        frame: true,
         webPreferences: {
             contextIsolation: true,
-            nodeIntegration: true
-        },
+            preload: path.join(__dirname, 'preload.js'),
+        }
     });
 
     win.loadFile(path.join(__dirname, 'dist', 'index.html'));
-
     win.removeMenu();
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);
