@@ -18,6 +18,7 @@ import { openEditTaskDialogBox } from "./edit_task_dialog";
 import editIcon from "../../icons/edit_icon.svg";
 import download from "downloadjs";
 import { fileOpen } from "browser-fs-access";
+import { showConfirm } from "./custom_popups";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";

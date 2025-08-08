@@ -60,6 +60,10 @@ body {
     .page-name {
         padding-left: 2rem;
     }
+
+    .welcome-page {
+        padding-right: 2.5rem !important;
+    }
 }
 
 .sidebar-closing {
@@ -872,6 +876,7 @@ textarea {
 
 .title-bar>.draggable {
     flex: 1;
+    height: 100%;
     app-region: drag;
 }
 
