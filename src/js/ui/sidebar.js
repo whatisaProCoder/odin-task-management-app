@@ -104,15 +104,15 @@ function handleSidebarOpeningClosing() {
     const contentElement = document.querySelector(".content");
     sidebarButton.addEventListener("click", (event) => {
         console.log(event.target);
-        sidebarElement.style.display = "none";
         globalSidebarToggle.style.display = "block";
         contentElement.classList.add("content-sidebar-closed");
+        sidebarElement.classList.add("sidebar-closing");
     });
     globalSidebarToggle.addEventListener("click", (event) => {
         console.log(event.target);
-        sidebarElement.style.display = "block";
         globalSidebarToggle.style.display = "none";
         contentElement.classList.remove("content-sidebar-closed");
+        sidebarElement.classList.remove("sidebar-closing");
     });
 }
 

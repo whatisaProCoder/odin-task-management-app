@@ -28,6 +28,12 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    transition: opacity 0.1s ease, width 0.2s ease;
+}
+
+.sidebar-closing {
+    opacity: 0;
+    width: 0px;
 }
 
 .sidebar-heading {
@@ -151,7 +157,7 @@ body {
 }
 
 .content-sidebar-closed {
-    padding-left: 2rem;
+    margin-left: 2rem;
 }
 
 .project-page {
