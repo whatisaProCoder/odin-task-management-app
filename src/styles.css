@@ -146,8 +146,17 @@ body {
 }
 
 .global-sidebar-toggle>img {
-    height: 1.5rem;
+    height: 1.75rem;
     user-select: none;
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 25%));
+    transition: filter 0.1s ease, scale 0.1s ease;
+}
+
+.global-sidebar-toggle:hover>img {
+    height: 1.75rem;
+    user-select: none;
+    filter: drop-shadow(1px 2px 4px rgba(0, 0, 0, 25%));
+    scale: 1.125;
 }
 
 .content {
@@ -155,10 +164,6 @@ body {
     flex: 1;
     background-color: #F8F8F8;
     overflow-y: auto;
-}
-
-.content-sidebar-closed {
-    margin-left: 2rem;
 }
 
 .project-page {

@@ -1,4 +1,5 @@
 import sidebarIcon from "../../icons/sidebar_icon.svg";
+import globalsidebarIcon from "../../icons/global_menu_icon.svg";
 import addIcon from "../../icons/add_icon.svg";
 import todayIcon from "../../icons/today_icon.svg";
 import upcomingIcon from "../../icons/upcoming_icon.svg";
@@ -80,7 +81,7 @@ export default function initialiseSidebar() {
     const globalSidebarToggle = document.createElement("div");
     globalSidebarToggle.classList.add("global-sidebar-toggle");
     globalSidebarToggle.innerHTML = /* html */ `
-        <img src="${sidebarIcon}" alt="Toggle Sidebar">
+        <img src="${globalsidebarIcon}" alt="Toggle Sidebar">
     `;
     document.body.append(globalSidebarToggle);
 
@@ -105,13 +106,11 @@ function handleSidebarOpeningClosing() {
     sidebarButton.addEventListener("click", (event) => {
         console.log(event.target);
         globalSidebarToggle.style.display = "block";
-        contentElement.classList.add("content-sidebar-closed");
         sidebarElement.classList.add("sidebar-closing");
     });
     globalSidebarToggle.addEventListener("click", (event) => {
         console.log(event.target);
         globalSidebarToggle.style.display = "none";
-        contentElement.classList.remove("content-sidebar-closed");
         sidebarElement.classList.remove("sidebar-closing");
     });
 }
