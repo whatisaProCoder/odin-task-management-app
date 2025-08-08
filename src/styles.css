@@ -16,6 +16,7 @@ body {
     flex-direction: row;
     height: 100vh;
     font-family: "Inter", 'Segoe UI';
+    background-color: #F8F8F8;
 }
 
 .sidebar {
@@ -131,10 +132,26 @@ body {
     user-select: none;
 }
 
+.global-sidebar-toggle {
+    display: none;
+    position: absolute;
+    margin: 1.5rem;
+}
+
+.global-sidebar-toggle>img {
+    height: 1.5rem;
+    user-select: none;
+}
+
 .content {
     height: 100%;
     flex: 1;
     background-color: #F8F8F8;
+    overflow-y: auto;
+}
+
+.content-sidebar-closed {
+    padding-left: 2rem;
 }
 
 .project-page {

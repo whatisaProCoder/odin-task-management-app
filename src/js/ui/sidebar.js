@@ -77,6 +77,15 @@ export default function initialiseSidebar() {
 
     document.body.append(addProjectDialogBox);
 
+    const globalSidebarToggle = document.createElement("div");
+    globalSidebarToggle.classList.add("global-sidebar-toggle");
+    globalSidebarToggle.innerHTML = /* html */ `
+        <img src="${sidebarIcon}" alt="Toggle Sidebar">
+    `;
+    document.body.append(globalSidebarToggle);
+
+    handleSidebarOpeningClosing();
+
     handleFilteredSection();
 
     populateProjectSection();
@@ -86,6 +95,25 @@ export default function initialiseSidebar() {
     handleProjectAddButton();
 
     handleAddTaskDialogBox(".add-task-button", null);
+}
+
+function handleSidebarOpeningClosing() {
+    const sidebarElement = document.querySelector(".sidebar");
+    const sidebarButton = document.querySelector(".sidebar-icon");
+    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
+    const contentElement = document.querySelector(".content");
+    sidebarButton.addEventListener("click", (event) => {
+        console.log(event.target);
+        sidebarElement.style.display = "none";
+        globalSidebarToggle.style.display = "block";
+        contentElement.classList.add("content-sidebar-closed");
+    });
+    globalSidebarToggle.addEventListener("click", (event) => {
+        console.log(event.target);
+        sidebarElement.style.display = "block";
+        globalSidebarToggle.style.display = "none";
+        contentElement.classList.remove("content-sidebar-closed");
+    });
 }
 
 function handleFilteredSection() {
