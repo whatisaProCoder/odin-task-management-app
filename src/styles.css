@@ -312,6 +312,8 @@ body {
 }
 
 dialog {
+    position: relative;
+    z-index: 100;
     animation: fade-out 0.3s ease-out;
 }
 
@@ -879,4 +881,78 @@ textarea {
 
 .title-bar>.icon-group>img {
     height: 1.5rem;
+}
+
+.popups-container {
+    position: relative;
+    z-index: 200;
+}
+
+.popup-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #DCDCDC;
+    border-radius: 0.25rem;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    background-color: #F8F8F8;
+    filter: drop-shadow(0px 46px 130px rgba(0, 0, 0, 35%));
+}
+
+.popup-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-dialog-box>.container>.dialog-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.popup-dialog-box>.container>.text {
+    font-weight: 500;
+}
+
+.popup-dialog-box>.container>.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 0.875rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+
+.popup-dialog-box>.container>.button-group>.no-button {
+    border: 1px solid #E1E1E1;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    background-color: #4076FF;
+    color: #F8F8F8;
+    user-select: none;
+    margin-right: 1px;
+}
+
+.popup-dialog-box>.container>.button-group>.no-button:active {
+    background-color: #2361ff;
+}
+
+.popup-dialog-box>.container>.button-group>.yes-button {
+    border: 1px solid #E1E1E1;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    background-color: #FF3535;
+    color: #F8F8F8;
+    user-select: none;
+    margin-right: 1px;
+}
+
+.popup-dialog-box>.container>.button-group>.yes-button:active {
+    background-color: #ff1313;
 }

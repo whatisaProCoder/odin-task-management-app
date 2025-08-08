@@ -96,18 +96,20 @@ function handleMenuState(projectID) {
         projectMenuDialogBox.close();
     });
 
-    projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", (event) => {
+    projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", async function (event) {
         console.log(event.target);
-        if (showConfirm("Do you want to delete all tasks in this project?")) {
+        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to factory reset?");
+        if (userConfirmation) {
             taskManager.removeAllTasksInProject(projectID);
             projectMenuDialogBox.close();
             createProjectPage(projectID);
         }
     });
 
-    projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", (event) => {
+    projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", async function (event) {
         console.log(event.target);
-        if (showConfirm("Do you want to delete this project?")) {
+        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to delete this project?");
+        if (userConfirmation) {
             taskManager.removeProject(projectID);
             projectMenuDialogBox.close();
             populateProjectSection();
@@ -115,9 +117,10 @@ function handleMenuState(projectID) {
         }
     });
 
-    projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", (event) => {
+    projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", async function (event) {
         console.log(event.target);
-        if (showConfirm("Do you want to factory reset?")) {
+        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to factory reset?");
+        if (userConfirmation) {
             taskManager.clearAllData();
             projectMenuDialogBox.close();
             populateProjectSection();

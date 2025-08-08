@@ -6,7 +6,7 @@ import TaskManager from "../core/taskManager";
 import Task from "../core/taskClass";
 import createProjectPage from "./project_page";
 import { compareAsc, format } from "date-fns";
-import { showAlert } from "./sweet_alert";
+import { showAlert } from "./custom_popups";
 
 const taskManager = new TaskManager();
 
@@ -117,17 +117,17 @@ function handleSaveAction(dialogBoxReference, projectID) {
         console.log(event.target);
 
         if (titleInputField.value == "") {
-            showAlert("Enter title of the task!");
+            showAlert(dialogBoxReference, "Enter title of the task!");
             return;
         }
 
         if (dueDateField.value == "") {
-            showAlert("Please select date and time of deadline.")
+            showAlert(dialogBoxReference, "Please select date and time of deadline.")
             return;
         }
 
         if (priorityField.value == "") {
-            showAlert(("Select priority of this task..."));
+            showAlert(dialogBoxReference, "Select priority of this task...");
             return;
         }
 
