@@ -17,6 +17,7 @@ body {
     height: 100vh;
     font-family: "Inter", 'Segoe UI';
     background-color: #F8F8F8;
+    position: relative;
 }
 
 .sidebar {
