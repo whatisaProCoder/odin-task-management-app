@@ -8,6 +8,7 @@ function createWindow() {
         titleBarStyle: 'hidden',
         icon: path.join(__dirname, "src", "icons", "favicon.png"),
         webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: false,
             contextIsolation: true,
         },
@@ -18,7 +19,7 @@ function createWindow() {
     win.removeMenu();
 
     // Uncomment to open DevTools for debugging
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
@@ -34,3 +35,32 @@ app.on('window-all-closed', () => {
     // Quit on all platforms except macOS
     if (process.platform !== 'darwin') app.quit();
 });
+
+const { ipcMain } = require('electron');
+
+ipcMain.on('window-minimize', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) win.minimize();
+});
+
+ipcMain.on('window-maximize', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) {
+        if (win.isMaximized()) {
+            win.unmaximize();
+        } else {
+            win.maximize();
+        }
+    }
+});
+
+ipcMain.on('window-unmaximize', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) win.unmaximize();
+});
+
+ipcMain.on('window-close', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) win.close();
+});
+

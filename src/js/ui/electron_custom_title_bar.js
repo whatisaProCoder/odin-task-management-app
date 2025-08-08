@@ -7,11 +7,26 @@ export default function createTitleBar() {
     titleBar.classList.add("title-bar");
     titleBar.innerHTML = /* html */ `
         <div class="icon-group">
-            <img src="${minimizeIcon}">
-            <img src="${maximizeIcon}">
-            <img src="${closeIcon}">
+            <img id="minimize" src="${minimizeIcon}">
+            <img id="maximize" src="${maximizeIcon}">
+            <img id="close" src="${closeIcon}">
         </div>
    `;
+
+    titleBar.querySelector("minimize").addEventListener("click", (event) => {
+        console.log(event.target);
+        window.electronAPI.minimize();
+    });
+
+    titleBar.querySelector("maximize").addEventListener("click", (event) => {
+        console.log(event.target);
+        window.electronAPI.maximize();
+    });
+
+    titleBar.querySelector("close").addEventListener("click", (event) => {
+        console.log(event.target);
+        window.electronAPI.close();
+    });
 
     document.body.append(titleBar);
 }
