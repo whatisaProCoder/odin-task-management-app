@@ -27,6 +27,7 @@ export default function createProjectPage(projectID) {
     const project = projects.find((project) => project.projectID == projectID);
 
     const contentElement = document.querySelector(".content");
+    contentElement.classList.remove("filtered-page");
     contentElement.classList.add("project-page");
     contentElement.innerHTML = /* html */ `
         <div class="project-page-header">

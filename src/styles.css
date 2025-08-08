@@ -688,3 +688,31 @@ textarea {
 .edit-task-dialog-box>.container>.button-group>.delete-button:active {
     background-color: #ff1313;
 }
+
+.filtered-page {
+    padding: 1.5rem 2rem;
+}
+
+.filtered-page>.filtered-page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filtered-page>.filtered-page-header>.page-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.filtered-page>.filtered-tasks {
+    margin-top: 2.5rem;
+}
+
+.filtered-page>.filtered-tasks>.project-name-label {
+    font-weight: 700;
+    color: #505050;
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}

@@ -12,6 +12,7 @@ import TaskManager from "../core/taskManager"
 import createProjectPage from "./project_page";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { handleAddTaskDialogBox } from "./add_task_dialog";
+import createFilteredPage from "./filtered_page";
 
 const taskManager = new TaskManager();
 
@@ -26,28 +27,28 @@ export default function initialiseSidebar() {
             <img class="add-icon" src="${addIcon}">
             Add Task
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="todays-tasks-item">
             <img class="sidebar-item-icon" src="${todayIcon}">
             Today
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="upcoming-tasks-item">
             <img class="sidebar-item-icon" src="${upcomingIcon}">
             Upcoming
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="completed-tasks-item">
             <img class="sidebar-item-icon" src="${completedIcon}">
             Completed
         </div>
         <div class="sidebar-section-name">Priority</div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="high-priority-tasks-item">
             <img class="sidebar-item-icon" src="${redHashtagIcon}">
             High
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="medium-priority-tasks-item">
             <img class="sidebar-item-icon" src="${blueHashtagIcon}">
             Medium
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item" id="low-priority-tasks-item">
             <img class="sidebar-item-icon" src="${greenHashtagIcon}">
             Low
         </div>
@@ -76,6 +77,8 @@ export default function initialiseSidebar() {
 
     document.body.append(addProjectDialogBox);
 
+    handleFilteredSection();
+
     populateProjectSection();
 
     handleSidebarItemStates();
@@ -85,8 +88,52 @@ export default function initialiseSidebar() {
     handleAddTaskDialogBox(".add-task-button", null);
 }
 
+function handleFilteredSection() {
+    const sidebarElement = document.querySelector(".sidebar");
+
+    const todaysTasksItem = sidebarElement.querySelector("#todays-tasks-item");
+    const upcomingTasksItem = sidebarElement.querySelector("#upcoming-tasks-item");
+    const completedTasksItem = sidebarElement.querySelector("#completed-tasks-item");
+    const highPriorityTasksItem = sidebarElement.querySelector("#high-priority-tasks-item");
+    const mediumPriorityTasksItem = sidebarElement.querySelector("#medium-priority-tasks-item");
+    const lowPriorityTasksItem = sidebarElement.querySelector("#low-priority-tasks-item");
+
+
+    todaysTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("Today's Tasks");
+    });
+
+    upcomingTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("Upcoming Tasks");
+    });
+
+    completedTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("Completed Tasks");
+    });
+
+    highPriorityTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("High Priority Tasks");
+    });
+
+
+    mediumPriorityTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("Medium Priority Tasks");
+    });
+
+    lowPriorityTasksItem.addEventListener("click", (event) => {
+        console.log(event.target);
+        createFilteredPage("Low Priority Tasks");
+    });
+}
+
 function handleSidebarItemStates() {
     const sidebarItems = document.querySelectorAll(".sidebar-item");
+
     sidebarItems.forEach((item) => {
         item.addEventListener("click", (event) => {
             console.log(event.target);
