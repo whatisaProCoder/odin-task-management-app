@@ -5,6 +5,8 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1200,
         height: 800,
+        minWidth: 400,
+        minHeight: 700,
         titleBarStyle: 'hidden',
         icon: path.join(__dirname, "src", "icons", "favicon.png"),
         webPreferences: {

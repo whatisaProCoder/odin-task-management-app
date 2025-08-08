@@ -18,7 +18,7 @@ import { openEditTaskDialogBox } from "./edit_task_dialog";
 import editIcon from "../../icons/edit_icon.svg";
 import download from "downloadjs";
 import { fileOpen } from "browser-fs-access";
-import { showConfirm } from "./custom_popups";
+import { showAlert, showConfirm } from "./custom_popups";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -175,6 +175,7 @@ function handleMenuState(projectID) {
     projectMenuDialogBox.querySelector(".export-button").addEventListener("click", (event) => {
         console.log(event.target);
         const data = taskManager.getAllProjects();
+        showAlert(projectMenuDialogBox, "Data exported to JSON file!");
         download(JSON.stringify(data, null, 2), "data.json", "application/json");
     });
 }
