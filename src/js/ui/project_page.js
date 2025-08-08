@@ -98,7 +98,7 @@ function handleMenuState(projectID) {
 
     projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", (event) => {
         console.log(event.target);
-        if (confirm("Do you want to delete all tasks in this project?")) {
+        if (showConfirm("Do you want to delete all tasks in this project?")) {
             taskManager.removeAllTasksInProject(projectID);
             projectMenuDialogBox.close();
             createProjectPage(projectID);
@@ -107,7 +107,7 @@ function handleMenuState(projectID) {
 
     projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", (event) => {
         console.log(event.target);
-        if (confirm("Do you want to delete this project?")) {
+        if (showConfirm("Do you want to delete this project?")) {
             taskManager.removeProject(projectID);
             projectMenuDialogBox.close();
             populateProjectSection();
@@ -117,7 +117,7 @@ function handleMenuState(projectID) {
 
     projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", (event) => {
         console.log(event.target);
-        if (confirm("Do you want to factory reset?")) {
+        if (showConfirm("Do you want to factory reset?")) {
             taskManager.clearAllData();
             projectMenuDialogBox.close();
             populateProjectSection();

@@ -6,6 +6,7 @@ import TaskManager from "../core/taskManager";
 import Task, { ExistingTask } from "../core/taskClass";
 import createProjectPage from "./project_page";
 import { compareAsc, format } from "date-fns";
+import { showConfirm } from "./sweet_alert";
 
 const taskManager = new TaskManager();
 
@@ -94,12 +95,12 @@ function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
         console.log(event.target);
 
         if (titleInputField.value == "") {
-            alert("Enter title of the task!");
+            showAlert("Enter title of the task!");
             return;
         }
 
         if (dueDateField.value == "") {
-            alert("Please select date and time of deadline.")
+            showAlert("Please select date and time of deadline.")
             return;
         }
 
@@ -132,7 +133,7 @@ function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
 function handleDeleteAction(dialogBoxReference, projectID, taskID) {
     const handleDelete = (event) => {
         console.log(event.target);
-        if (confirm("Do you want to delete this task?")) {
+        if (showConfirm("Do you want to delete this task?")) {
             taskManager.removeTask(projectID, taskID);
             createProjectPage(projectID);
 

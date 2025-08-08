@@ -16,6 +16,10 @@ setupScrollbars();
 
 console.log("Application successfully initialised!");
 
+// if building electron app
+import createTitleBar from "./js/ui/electron_custom_title_bar";
+document.body.style.paddingTop = "40px";
+createTitleBar();
 
 
 

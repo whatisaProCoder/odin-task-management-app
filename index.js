@@ -5,33 +5,32 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1200,
         height: 800,
-        frame: false,
-        titleBarOverlay: "hidden",
-        icon: path.join(__dirname, 'src', 'icons', 'favicon.png'),
+        titleBarStyle: 'hidden',
+        icon: path.join(__dirname, "src", "icons", "favicon.png"),
         webPreferences: {
-            sandbox: false,
-            preload: path.join(__dirname, 'preload.js')
+            nodeIntegration: false,
+            contextIsolation: true,
         },
     });
 
     win.loadFile(path.join(__dirname, 'dist', 'index.html'));
 
-    attachTitlebarToWindow(mainWindow);
+    win.removeMenu();
 
-    // Optional: open devtools for debugging
-    // win.webContents.openDevTools();
+    // Uncomment to open DevTools for debugging
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
     createWindow();
 
     app.on('activate', () => {
-        // On macOS, re-create window when dock icon is clicked and no other windows open
+        // On macOS re-create window if none are open
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
     });
 });
 
-// Quit app when all windows closed, except on macOS
 app.on('window-all-closed', () => {
+    // Quit on all platforms except macOS
     if (process.platform !== 'darwin') app.quit();
 });
