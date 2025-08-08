@@ -6,6 +6,7 @@ export default function createTitleBar() {
     const titleBar = document.createElement("div");
     titleBar.classList.add("title-bar");
     titleBar.innerHTML = /* html */ `
+        <div class="draggable"></div>  
         <div class="icon-group">
             <img id="minimize" src="${minimizeIcon}">
             <img id="maximize" src="${maximizeIcon}">
@@ -13,20 +14,20 @@ export default function createTitleBar() {
         </div>
    `;
 
-    titleBar.querySelector("minimize").addEventListener("click", (event) => {
+    document.body.append(titleBar);
+
+    titleBar.querySelector("#minimize").addEventListener("click", (event) => {
         console.log(event.target);
         window.electronAPI.minimize();
     });
 
-    titleBar.querySelector("maximize").addEventListener("click", (event) => {
+    titleBar.querySelector("#maximize").addEventListener("click", (event) => {
         console.log(event.target);
         window.electronAPI.maximize();
     });
 
-    titleBar.querySelector("close").addEventListener("click", (event) => {
+    titleBar.querySelector("#close").addEventListener("click", (event) => {
         console.log(event.target);
         window.electronAPI.close();
     });
-
-    document.body.append(titleBar);
 }

@@ -19,7 +19,7 @@ function createWindow() {
     win.removeMenu();
 
     // Uncomment to open DevTools for debugging
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {

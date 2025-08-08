@@ -868,7 +868,10 @@ textarea {
     border-bottom: 1px solid #DADADA;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+}
+
+.title-bar>.draggable {
+    flex: 1;
     app-region: drag;
 }
 
@@ -876,6 +879,7 @@ textarea {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    margin-left: 0.6rem;
     margin-right: 0.6rem;
 }
 
