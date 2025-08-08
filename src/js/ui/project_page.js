@@ -1,5 +1,6 @@
 import Task, { ExistingTask } from "../core/taskClass";
 import TaskManager from "../core/taskManager";
+import StorageManager from "../core/storageModule";
 import menuIcon from "../../icons/menu_icon.svg";
 import blueAddIcon from "../../icons/blue_add_icon.svg";
 import redHashtagIcon from "../../icons/red_hashtag_icon.svg";
@@ -15,6 +16,8 @@ import { handleAddTaskDialogBox } from "../ui/add_task_dialog";
 import { compareAsc, format } from "date-fns";
 import { openEditTaskDialogBox } from "./edit_task_dialog";
 import editIcon from "../../icons/edit_icon.svg";
+import download from "downloadjs";
+import { fileOpen } from "browser-fs-access";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -44,6 +47,11 @@ export default function createProjectPage(projectID) {
                 <div class="menu-item" id="clear-project-tasks">Clear Tasks</div>
                 <div class="menu-item" id="delete-project">Delete Project</div>
                 <div class="menu-item" id="clear-all-data">Clear All Data</div>
+                <div class="label">Manage your data</div>
+                <div class="button-group">
+                    <div class="import-button">Import</div>
+                    <div class="export-button">Export</div>
+                </div>
             </div>
         </dialog>
         <dialog class="rename-project-dialog-box" closeby="any">
@@ -143,6 +151,27 @@ function handleMenuState(projectID) {
                 createProjectPage(projectID);
             }
         });
+    });
+
+    projectMenuDialogBox.querySelector(".import-button").addEventListener("click", (event) => {
+        console.log(event.target);
+        async function loadJSON() {
+            const file = await fileOpen({ mimeTypes: ["application/json"] });
+            const text = await file.text();
+            return JSON.parse(text);
+        }
+
+        loadJSON().then(data => {
+            const storageManager = new StorageManager();
+            storageManager.setData("projects", data);
+            location.reload();
+        });
+    });
+
+    projectMenuDialogBox.querySelector(".export-button").addEventListener("click", (event) => {
+        console.log(event.target);
+        const data = taskManager.getAllProjects();
+        download(JSON.stringify(data, null, 2), "data.json", "application/json");
     });
 }
 

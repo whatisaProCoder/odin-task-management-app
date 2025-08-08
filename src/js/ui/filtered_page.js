@@ -52,7 +52,7 @@ export default function createFilteredPage(pageName) {
                 const todaysDate = new Date();
                 const taskDate = new Date(task.dueDate);
 
-                if (todaysDate.getDate() - taskDate.getDate() < 14 && todaysDate.getMonth() == taskDate.getMonth() && todaysDate.getFullYear() == taskDate.getFullYear()) {
+                if (todaysDate.getDate() - taskDate.getDate() < 14 && todaysDate.getDate() != taskDate.getDate() && todaysDate.getMonth() == taskDate.getMonth() && todaysDate.getFullYear() == taskDate.getFullYear()) {
                     return true;
                 } else {
                     return false;

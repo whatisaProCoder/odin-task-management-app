@@ -117,6 +117,7 @@ body {
     margin-top: 0.75rem;
     color: #1E1E1E;
     user-select: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .sidebar-item:hover {
@@ -390,6 +391,11 @@ dialog:open::backdrop {
 
 .menu-dialog-box>.container>.dialog-header>.menu-close-button {
     height: 1.75rem;
+    border-radius: 0.25rem;
+}
+
+.menu-dialog-box>.container>.dialog-header>.menu-close-button:hover {
+    background-color: #E4E4E4;
 }
 
 .menu-dialog-box>.container>.menu-item {
@@ -403,6 +409,40 @@ dialog:open::backdrop {
 
 .menu-dialog-box>.container>.menu-item:hover {
     background-color: #EEEEEE;
+}
+
+.menu-dialog-box>.container>.button-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.import-button,
+.export-button {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    background-color: #4076FF;
+    color: #F8F8F8;
+    user-select: none;
+}
+
+.import-button:active,
+.export-button:active {
+    background-color: #2361ff;
+}
+
+.menu-dialog-box>.container>.label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #505050;
+    margin: 0.25rem 0rem;
+    margin-top: 1.5rem;
 }
 
 .add-project-dialog-box {
@@ -437,6 +477,12 @@ dialog:open::backdrop {
 
 .add-project-dialog-box>.container>.dialog-header>.menu-close-button {
     height: 1.75rem;
+    border-radius: 0.25rem;
+}
+
+
+.add-project-dialog-box>.container>.dialog-header>.menu-close-button:hover {
+    background-color: #E4E4E4;
 }
 
 .add-project-dialog-box>.container>.project-name-input {
@@ -503,6 +549,11 @@ dialog:open::backdrop {
 
 .rename-project-dialog-box>.container>.dialog-header>.menu-close-button {
     height: 1.75rem;
+    border-radius: 0.25rem;
+}
+
+.rename-project-dialog-box>.container>.dialog-header>.menu-close-button {
+    background-color: #E4E4E4;
 }
 
 .rename-project-dialog-box>.container>.project-name-input {
@@ -570,6 +621,11 @@ dialog:open::backdrop {
 
 .add-task-dialog-box>.container>.dialog-header>.menu-close-button {
     height: 1.75rem;
+    border-radius: 0.25rem;
+}
+
+.add-task-dialog-box>.container>.dialog-header>.menu-close-button:hover {
+    background-color: #E4E4E4;
 }
 
 .input-field-label {
@@ -719,6 +775,12 @@ textarea {
 
 .edit-task-dialog-box>.container>.dialog-header>.menu-close-button {
     height: 1.75rem;
+    border-radius: 0.25rem;
+}
+
+
+.edit-task-dialog-box>.container>.dialog-header>.menu-close-button:hover {
+    background-color: #DADADA;
 }
 
 .edit-task-dialog-box>.container>.button-group {
@@ -787,4 +849,9 @@ textarea {
     font-size: 0.9375rem;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
+}
+
+#description-field,
+#notes-field {
+    line-height: 1.5em;
 }
