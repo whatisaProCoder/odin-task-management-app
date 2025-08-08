@@ -102,7 +102,7 @@ function handleSidebarOpeningClosing() {
     const sidebarElement = document.querySelector(".sidebar");
     const sidebarButton = document.querySelector(".sidebar-icon");
     const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
-    const contentElement = document.querySelector(".content");
+
     sidebarButton.addEventListener("click", (event) => {
         console.log(event.target);
         globalSidebarToggle.style.display = "block";
@@ -115,9 +115,18 @@ function handleSidebarOpeningClosing() {
     });
 }
 
+function closeSidebarifMobile() {
+    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
+    const sidebarElement = document.querySelector(".sidebar");
+    if (window.innerWidth < 750) {
+        globalSidebarToggle.style.display = "block";
+        sidebarElement.classList.add("sidebar-closing");
+    }
+}
+
 function handleFilteredSection() {
     const sidebarElement = document.querySelector(".sidebar");
-
+    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
     const todaysTasksItem = sidebarElement.querySelector("#todays-tasks-item");
     const upcomingTasksItem = sidebarElement.querySelector("#upcoming-tasks-item");
     const completedTasksItem = sidebarElement.querySelector("#completed-tasks-item");
@@ -128,32 +137,38 @@ function handleFilteredSection() {
 
     todaysTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("Today's Tasks");
     });
 
     upcomingTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("Upcoming Tasks");
     });
 
     completedTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("Completed Tasks");
     });
 
     highPriorityTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("High Priority Tasks");
     });
 
 
     mediumPriorityTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("Medium Priority Tasks");
     });
 
     lowPriorityTasksItem.addEventListener("click", (event) => {
         console.log(event.target);
+        closeSidebarifMobile();
         createFilteredPage("Low Priority Tasks");
     });
 }
@@ -186,6 +201,7 @@ export function populateProjectSection() {
         `;
         sidebarProjectElement.addEventListener("click", (event) => {
             console.log(event.target);
+            closeSidebarifMobile();
             createProjectPage(project.projectID);
         })
         document.querySelector(".sidebar-projects").append(sidebarProjectElement);
