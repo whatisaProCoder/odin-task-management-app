@@ -5,8 +5,6 @@ import createWelcomePage from "./js/ui/welcome_page";
 import initialiseAddTaskDialogBox from "./js/ui/add_task_dialog";
 import initialiseEditTaskDialogBox from "./js/ui/edit_task_dialog";
 
-
-
 initialiseAddTaskDialogBox();
 initialiseEditTaskDialogBox();
 
