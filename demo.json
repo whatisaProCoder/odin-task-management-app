@@ -1,0 +1,272 @@
+[
+  {
+    "projectID": "proj-001",
+    "projectName": "Data Structures & Algorithms",
+    "tasks": [
+      {
+        "taskID": "task-001",
+        "title": "Implement Linked List (Singly & Doubly)",
+        "description": "Write code in C++ covering insert, delete, search",
+        "dueDate": "2025-08-12T23:59",
+        "priority": "High",
+        "notes": "Focus on pointer manipulation",
+        "complete": true
+      },
+      {
+        "taskID": "task-002",
+        "title": "Revise Tree Traversals",
+        "description": "Inorder, Preorder, Postorder recursive and iterative",
+        "dueDate": "2025-08-15T18:00",
+        "priority": "Medium",
+        "notes": "Draw diagrams for each traversal",
+        "complete": true
+      },
+      {
+        "taskID": "task-003",
+        "title": "Solve 10 Graph Problems on LeetCode",
+        "description": "Focus on BFS and DFS problems",
+        "dueDate": "2025-08-20T21:00",
+        "priority": "High",
+        "notes": "Tag solutions with difficulty levels",
+        "complete": false
+      },
+      {
+        "taskID": "task-004",
+        "title": "Implement Stack & Queue using Arrays",
+        "description": "Understand static memory allocation",
+        "dueDate": "2025-08-13T22:00",
+        "priority": "Medium",
+        "notes": "",
+        "complete": false
+      },
+      {
+        "taskID": "task-005",
+        "title": "Prepare for DSA Midterm",
+        "description": "Review previous assignments and practice questions",
+        "dueDate": "2025-08-25T09:00",
+        "priority": "High",
+        "notes": "Focus on time complexity",
+        "complete": false
+      },
+      {
+        "taskID": "task-006",
+        "title": "Complete Hashing Assignment",
+        "description": "Implement hash tables with collision handling",
+        "dueDate": "2025-08-28T23:59",
+        "priority": "High",
+        "notes": "",
+        "complete": false
+      }
+    ]
+  },
+  {
+    "projectID": "proj-002",
+    "projectName": "Operating Systems",
+    "tasks": [
+      {
+        "taskID": "task-007",
+        "title": "Write Report on Process Scheduling Algorithms",
+        "description": "Explain Round Robin, Priority, and Multilevel Queues",
+        "dueDate": "2025-08-18T23:59",
+        "priority": "High",
+        "notes": "Add real-world use cases",
+        "complete": false
+      },
+      {
+        "taskID": "task-008",
+        "title": "Lab: Implement Producer-Consumer Problem",
+        "description": "Use semaphores and mutex locks in C",
+        "dueDate": "2025-08-22T17:00",
+        "priority": "High",
+        "notes": "Test for deadlock scenarios",
+        "complete": false
+      },
+      {
+        "taskID": "task-009",
+        "title": "Study Memory Management",
+        "description": "Learn about paging, segmentation, and virtual memory",
+        "dueDate": "2025-08-20T20:00",
+        "priority": "Medium",
+        "notes": "Summarize in notebook",
+        "complete": false
+      },
+      {
+        "taskID": "task-010",
+        "title": "Prepare Presentation on Deadlocks",
+        "description": "Causes, prevention, and avoidance techniques",
+        "dueDate": "2025-08-25T14:00",
+        "priority": "Medium",
+        "notes": "Include examples and flowcharts",
+        "complete": false
+      },
+      {
+        "taskID": "task-011",
+        "title": "OS Quiz Preparation",
+        "description": "Practice multiple choice questions from past exams",
+        "dueDate": "2025-08-27T18:00",
+        "priority": "Low",
+        "notes": "Use quiz apps",
+        "complete": false
+      }
+    ]
+  },
+  {
+    "projectID": "proj-003",
+    "projectName": "Web Development",
+    "tasks": [
+      {
+        "taskID": "task-012",
+        "title": "Build Personal Portfolio Website",
+        "description": "Use HTML, CSS, and JavaScript",
+        "dueDate": "2025-08-30T20:00",
+        "priority": "Low",
+        "notes": "Host on GitHub Pages",
+        "complete": true
+      },
+      {
+        "taskID": "task-013",
+        "title": "Complete The Odin Project - JavaScript Basics",
+        "description": "",
+        "dueDate": "2025-08-15T23:59",
+        "priority": "Medium",
+        "notes": "Finish exercises",
+        "complete": true
+      },
+      {
+        "taskID": "task-014",
+        "title": "Learn React Fundamentals",
+        "description": "Components, props, and state",
+        "dueDate": "2025-09-05T18:00",
+        "priority": "Medium",
+        "notes": "Build small projects",
+        "complete": false
+      },
+      {
+        "taskID": "task-015",
+        "title": "Deploy To-Do App",
+        "description": "Add hosting and continuous deployment",
+        "dueDate": "2025-09-10T21:00",
+        "priority": "Medium",
+        "notes": "Use Netlify or Vercel",
+        "complete": false
+      }
+    ]
+  },
+  {
+    "projectID": "proj-004",
+    "projectName": "Machine Learning Basics",
+    "tasks": [
+      {
+        "taskID": "task-016",
+        "title": "Watch Intro to ML Lectures",
+        "description": "Complete first 3 videos on Coursera",
+        "dueDate": "2025-08-20T19:00",
+        "priority": "Medium",
+        "notes": "Take notes for each topic",
+        "complete": false
+      },
+      {
+        "taskID": "task-017",
+        "title": "Implement Linear Regression from Scratch",
+        "description": "Use Python and NumPy",
+        "dueDate": "2025-08-25T23:59",
+        "priority": "High",
+        "notes": "Test on sample dataset",
+        "complete": false
+      },
+      {
+        "taskID": "task-018",
+        "title": "Prepare Dataset for Classification Task",
+        "description": "Clean and preprocess data",
+        "dueDate": "2025-08-28T16:00",
+        "priority": "High",
+        "notes": "",
+        "complete": false
+      },
+      {
+        "taskID": "task-019",
+        "title": "Participate in Kaggle Competition",
+        "description": "Submit baseline model",
+        "dueDate": "2025-09-10T23:59",
+        "priority": "Medium",
+        "notes": "Focus on feature engineering",
+        "complete": false
+      }
+    ]
+  },
+  {
+    "projectID": "proj-005",
+    "projectName": "College Seminars & Presentations",
+    "tasks": [
+      {
+        "taskID": "task-020",
+        "title": "Prepare Slides for Seminar on Cybersecurity",
+        "description": "Include recent trends and examples",
+        "dueDate": "2025-08-21T12:00",
+        "priority": "Medium",
+        "notes": "",
+        "complete": false
+      },
+      {
+        "taskID": "task-021",
+        "title": "Practice Presentation Skills",
+        "description": "Rehearse in front of friends",
+        "dueDate": "2025-08-23T16:00",
+        "priority": "Low",
+        "notes": "Time it for 10 minutes",
+        "complete": false
+      },
+      {
+        "taskID": "task-022",
+        "title": "Submit Seminar Report",
+        "description": "Write and format report document",
+        "dueDate": "2025-08-25T23:59",
+        "priority": "High",
+        "notes": "Follow college formatting guidelines",
+        "complete": false
+      }
+    ]
+  },
+  {
+    "projectID": "proj-006",
+    "projectName": "Personal Growth & Misc",
+    "tasks": [
+      {
+        "taskID": "task-023",
+        "title": "Learn Git & GitHub Basics",
+        "description": "Commands: clone, commit, push, pull",
+        "dueDate": "2025-08-14T20:00",
+        "priority": "Medium",
+        "notes": "Complete tutorial videos",
+        "complete": true
+      },
+      {
+        "taskID": "task-024",
+        "title": "Practice Competitive Programming",
+        "description": "Solve easy problems on Codeforces",
+        "dueDate": "2025-08-30T21:00",
+        "priority": "Medium",
+        "notes": "Focus on implementation speed",
+        "complete": false
+      },
+      {
+        "taskID": "task-025",
+        "title": "Join Tech Club Meetings",
+        "description": "Attend weekly sessions",
+        "dueDate": "2025-08-13T18:00",
+        "priority": "Low",
+        "notes": "",
+        "complete": false
+      },
+      {
+        "taskID": "task-026",
+        "title": "Plan Internship Applications",
+        "description": "Research companies and deadlines",
+        "dueDate": "2025-09-05T23:59",
+        "priority": "High",
+        "notes": "Update resume and LinkedIn",
+        "complete": false
+      }
+    ]
+  }
+]
