@@ -7,24 +7,8 @@ An intuitive task management application built with modern web technologies and 
 ## 📚 Table of Contents
 
 - [Introduction](#introduction)
-
-## � Learning Journey
-
-This project represents a significant milestone in my web development journey through The Odin Project curriculum. At only 34% through the JavaScript section, I wanted to prove to myself that I could build a sophisticated application using just the fundamental technologies I had learned so far.
-
-The project was completed in an intensive one-week sprint—from initial design to fully functional desktop application—demonstrating efficient workflow and deep understanding of the technologies used. This focused, time-boxed approach was intentional, as I'm eager to continue my educational journey and progress further through The Odin Project curriculum, where many more concepts and technologies await.
-
-Key learnings from this approach:
-
-- **DOM Manipulation Mastery**: Developed deep understanding of working directly with the DOM
-- **Module Pattern Proficiency**: Learned to organize code into maintainable modules without framework assistance
-- **State Management Challenges**: Implemented custom state management, appreciating the complexity of maintaining application state
-- **CSS Architecture**: Created a scalable styling system from scratch
-- **Rapid Execution**: Practiced completing a full-featured application under time constraints
-
-This foundation will prove invaluable as I continue through The Odin Project curriculum, giving me practical experience with fundamental concepts that underpin more advanced technologies and frameworks.Journey](#project-journey)
-
-- [Future Plans](#future-plans)
+  - [Project Journey](#project-journey)
+  - [Next Steps](#next-steps)
 - [Features](#features)
 - [Architecture](#architecture)
   - [Plain JavaScript Excellence](#plain-javascript-excellence)
