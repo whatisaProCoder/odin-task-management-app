@@ -100,7 +100,7 @@ function handleMenuState(projectID) {
 
     projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", async function (event) {
         console.log(event.target);
-        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to factory reset?");
+        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to clear tasks for this project?");
         if (userConfirmation) {
             taskManager.removeAllTasksInProject(projectID);
             projectMenuDialogBox.close();
