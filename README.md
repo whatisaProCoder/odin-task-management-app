@@ -218,16 +218,38 @@ Displays all tasks within a project and provides project management options:
 - Project menu (rename, clear tasks, delete)
 - Add Task button
 
+### Filtered Page (`filtered_page.js`)
+
+Displays tasks filtered by specific criteria:
+
+- Today's tasks
+- Upcoming tasks
+- Completed tasks
+- Tasks by priority (High, Medium, Low)
+
 ### Dialog Boxes
 
 - **Add Task Dialog** (`add_task_dialog.js`): Form for creating new tasks
 - **Edit Task Dialog** (`edit_task_dialog.js`): Form for editing existing tasks
 - **Preview Task Dialog** (`preview_task_dialog.js`): Detailed view of a task
 
+### Welcome Page (`welcome_page.js`)
+
+Initial screen displayed to new users:
+
+- Introduction to the application
+- Getting started information
+- Example projects and tasks
+
+### Blank Page (`black_page.js`)
+
+Utility view displayed when no project is selected or for empty states.
+
 ### Custom UI Elements
 
 - **Custom Popups** (`custom_popups.js`): Async confirmation dialogs
 - **Scrollbar** (`scrollbar.js`): Smooth custom scrollbar implementation
+- **Electron Custom Title Bar** (`electron_custom_title_bar.js`): Custom window controls for the desktop application
 
 ## 🖥️ Electron Integration
 
