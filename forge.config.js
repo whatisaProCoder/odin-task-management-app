@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: path.resolve(__dirname, 'src/icons/favicon')
+    icon: path.resolve(__dirname, 'src', 'icons', 'favicon')
   },
   rebuildConfig: {},
   makers: [
@@ -23,7 +23,7 @@ module.exports = {
           desktop: true, // Create desktop shortcut
           startMenu: true // Create Start Menu shortcut
         },
-        iconPath: path.resolve(__dirname, 'src/icons/favicon.ico')
+        iconPath: path.resolve(__dirname, 'src', 'icons', 'favicon.ico')
       }
     },
     {
