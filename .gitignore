@@ -6,3 +6,6 @@ dist
 
 # Misc
 package-lock.json
+
+# app package folder
+out

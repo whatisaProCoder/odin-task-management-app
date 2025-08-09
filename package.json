@@ -1,21 +1,25 @@
 {
-  "name": "project-name",
-  "version": "0.0.1",
-  "description": "Give description here.",
+  "name": "Polymath",
+  "version": "1.0.0",
+  "description": "Intuitive Task Management App",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "start:electron": "electron .",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pritam Debnath",
   "license": "ISC",
   "dependencies": {
     "browser-fs-access": "^0.38.0",
     "date-fns": "^4.1.0",
     "downloadjs": "^1.4.7",
+    "electron-squirrel-startup": "^1.0.1",
     "pretty-print-json": "^3.0.5",
     "smooth-scrollbar": "^8.8.4",
     "sweetalert2": "^11.22.3",
@@ -23,6 +27,15 @@
     "webpack-cli": "^6.0.1"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.8.3",
+    "@electron-forge/maker-deb": "^7.8.3",
+    "@electron-forge/maker-rpm": "^7.8.3",
+    "@electron-forge/maker-squirrel": "^7.8.3",
+    "@electron-forge/maker-wix": "^7.8.3",
+    "@electron-forge/maker-zip": "^7.8.3",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.3",
+    "@electron-forge/plugin-fuses": "^7.8.3",
+    "@electron/fuses": "^1.8.0",
     "css-loader": "^7.1.2",
     "electron": "^37.2.6",
     "html-loader": "^5.1.0",
