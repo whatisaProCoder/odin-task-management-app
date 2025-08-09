@@ -5,25 +5,19 @@ const path = require('path');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: path.resolve(__dirname, 'src', 'icons', 'favicon')
+    icon: "app" // no .ico extension here
   },
   rebuildConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-wix',
+      name: '@electron-forge/maker-squirrel',
       config: {
         name: 'Polymath',
-        manufacturer: 'Pritam Debnath',
+        authors: 'Pritam Debnath',
         description: 'Intuitive Task Management App',
-        version: '1.0.0',
-        ui: {
-          chooseInstallDir: true // Let user pick install folder
-        },
-        shortcuts: {
-          desktop: true, // Create desktop shortcut
-          startMenu: true // Create Start Menu shortcut
-        },
-        iconPath: path.resolve(__dirname, 'src', 'icons', 'favicon.ico')
+        setupIcon: "app.ico", // installer icon
+        iconUrl: 'https://raw.githubusercontent.com/whatisaProCoder/whatisaProCoder/refs/heads/main/polymath.ico', // should be a publicly accessible .ico URL
+        shortcutName: 'Polymath', // shortcut name in Start Menu/Desktop
       }
     },
     {
@@ -36,8 +30,6 @@ module.exports = {
       name: '@electron-forge/plugin-auto-unpack-natives',
       config: {},
     },
-    // Fuses are used to enable/disable various Electron functionality
-    // at package time, before code signing the application
     new FusesPlugin({
       version: FuseVersion.V1,
       [FuseV1Options.RunAsNode]: false,
