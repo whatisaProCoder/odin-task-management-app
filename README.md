@@ -28,11 +28,14 @@ Polymath is a task management application designed to help users organize their 
 
 Polymath began as a simple To-Do app project for The Odin Project curriculum. What started as a basic exercise in vanilla JavaScript quickly evolved as I fell in love with building a practical, everyday application:
 
-1. **From Simple to Complex**: I began with the core todo functionality, then continuously added features like projects, priorities, and due dates
-2. **Design-First Approach**: Created a modern UI design in Figma, focusing on clean aesthetics and intuitive interactions
-3. **Vanilla JS Power**: Built entirely with vanilla JavaScript, HTML, and CSS—proving that modern, powerful applications don't always require frameworks like React
-4. **Modular Architecture**: Implemented a modular code structure with careful separation of concerns
-5. **Desktop Application**: Extended the web app into a desktop application using Electron
+1. **Core-First Development**: I built the functional core modules first, implementing robust data structures and storage functionality before any UI work began—ensuring a solid foundation
+2. **Modular Architecture**: Created a clean, modular codebase with careful separation of concerns between data and presentation layers
+3. **Design Phase**: Only after the core functionality was solid, I created a modern UI design in Figma, focusing on clean aesthetics and intuitive interactions
+4. **UI Implementation**: Translated the Figma designs into code, connecting the UI modules to the already-functioning core
+5. **Vanilla JS Power**: Built entirely with vanilla JavaScript, HTML, and CSS—proving that modern, powerful applications don't always require frameworks like React
+6. **Desktop Application**: Extended the web app into a desktop application using Electron
+
+This methodical approach—starting with a solid core, designing intentionally, and then building a beautiful UI—resulted in an application that's not only visually appealing but also robust and maintainable under the hood.
 
 ### 🔮 Future Plans
 
