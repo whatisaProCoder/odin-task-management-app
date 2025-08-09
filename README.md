@@ -354,7 +354,6 @@ Available makers:
 - `date-fns`: Date utility library for formatting and manipulating dates
 - `smooth-scrollbar`: Custom scrollbar implementation
 - `pretty-print-json`: JSON visualization utility
-- `sweetalert2`: Modern popup/alert library
 - `electron-squirrel-startup`: Handles Squirrel events for Windows
 - `browser-fs-access`: File system access API for browsers
 - `downloadjs`: Client-side file downloading utility

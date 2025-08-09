@@ -22,7 +22,6 @@
     "electron-squirrel-startup": "^1.0.1",
     "pretty-print-json": "^3.0.5",
     "smooth-scrollbar": "^8.8.4",
-    "sweetalert2": "^11.22.3",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1"
   },
