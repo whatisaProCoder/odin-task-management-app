@@ -7,6 +7,7 @@ import Task, { ExistingTask } from "../core/taskClass";
 import createProjectPage from "./project_page";
 import { compareAsc, format } from "date-fns";
 import { showConfirm } from "./custom_popups";
+import { populateProjectSection } from "./sidebar";
 
 const taskManager = new TaskManager();
 
@@ -119,6 +120,7 @@ function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
         ));
         createProjectPage(projectID);
         clearAllInputFields();
+
 
         dialogBoxReference.close();
     };
