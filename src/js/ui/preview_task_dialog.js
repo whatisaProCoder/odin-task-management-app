@@ -20,11 +20,10 @@ export default function initialisePreviewTaskDialogBox() {
                         <img class="menu-close-button" src="${menuCloseIcon}" alt="Project Menu">
                     </div>
                     <div class="input-field-label" id="select-project-label">Project</div>
-                    <select type="text" id="select-project" class="input-field" disabled>
-                    </select>
+                    <input type="text" id="select-project" class="input-field" disabled>
                     <div class="input-field-label">Title</div>
                     <input type="text" id="title-field" class="input-field" disabled>
-                    <div class="input-field-label">Description</div>
+                    <div class="input-field-label" id="preview-dialog-description-label">Description</div>
                     <textarea id="description-field" class="input-field" disabled></textarea>
                     <div class="icon-label-container">
                         <img src="${accentAlarmIcon}">
@@ -35,13 +34,8 @@ export default function initialisePreviewTaskDialogBox() {
                         <img src="${priorityIcon}">
                         <div class="input-field-label">Priority</div>
                     </div>
-                    <select type="text" id="select-priority" class="input-field" disabled>
-                        <option value="" selected disabled hidden>Select Level</option>
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
-                    </select>
-                    <div class="icon-label-container">
+                    <input type="text" id="select-priority" class="input-field" disabled>
+                    <div class="icon-label-container" id="preview-dialog-notes-label">
                         <img src="${notesIcon}">
                         <div class="input-field-label">Notes</div>
                     </div>
@@ -54,31 +48,46 @@ export default function initialisePreviewTaskDialogBox() {
 }
 
 export function openPreviewTaskDialogBox(projectID, taskID) {
-    const editTaskDialogBox = document.querySelector(".preview-task-dialog-box");
-    const titleInputField = editTaskDialogBox.querySelector("#title-field");
-    const descriptionField = editTaskDialogBox.querySelector("#description-field");
-    const dueDateField = editTaskDialogBox.querySelector("#due-date-field");
-    const priorityField = editTaskDialogBox.querySelector("#select-priority");
-    const notesField = editTaskDialogBox.querySelector("#notes-field");
+    const previewTaskDialogBox = document.querySelector(".preview-task-dialog-box");
+    const projectInputField = previewTaskDialogBox.querySelector("#select-project");
+    const titleInputField = previewTaskDialogBox.querySelector("#title-field");
+    const descriptionField = previewTaskDialogBox.querySelector("#description-field");
+    const dueDateField = previewTaskDialogBox.querySelector("#due-date-field");
+    const priorityField = previewTaskDialogBox.querySelector("#select-priority");
+    const notesField = previewTaskDialogBox.querySelector("#notes-field");
 
+    const project = taskManager.getProject(projectID);
     const task = taskManager.getTask(projectID, taskID);
 
+    projectInputField.value = project.projectName;
     titleInputField.value = task.title;
     descriptionField.value = task.description;
     dueDateField.value = task.dueDate;
     priorityField.value = task.priority;
     notesField.value = task.notes;
 
-    const closeButton = editTaskDialogBox.querySelector(".menu-close-button");
+    if (task.description === "") {
+        descriptionField.style.display = "none";
+        const label = previewTaskDialogBox.querySelector("#preview-dialog-description-label");
+        label.style.display = "none";
+    }
+
+    if (task.notes === "") {
+        notesField.style.display = "none";
+        const label = previewTaskDialogBox.querySelector("#preview-dialog-notes-label");
+        label.style.display = "none";
+    }
+
+    const closeButton = previewTaskDialogBox.querySelector(".menu-close-button");
     const cloneCloseButton = closeButton.cloneNode(true);
     closeButton.replaceWith(cloneCloseButton);
     cloneCloseButton.addEventListener("click", (event) => {
         console.log(event.target);
-        editTaskDialogBox.close();
+        previewTaskDialogBox.close();
         clearAllInputFields();
     });
 
-    editTaskDialogBox.showModal();
+    previewTaskDialogBox.showModal();
 }
 
 function clearAllInputFields() {

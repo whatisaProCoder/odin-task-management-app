@@ -120,7 +120,7 @@ export default class TaskManager {
     getProject(projectID) {
         this.retriveLatest();
         const project = this.projects.filter((project) => project.projectID == projectID);
-        return project;
+        return project[0];
     }
 
     getAllProjects() {

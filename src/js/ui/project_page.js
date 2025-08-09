@@ -19,6 +19,7 @@ import editIcon from "../../icons/edit_icon.svg";
 import download from "downloadjs";
 import { fileOpen } from "browser-fs-access";
 import { showAlert, showConfirm } from "./custom_popups";
+import { openPreviewTaskDialogBox } from "./preview_task_dialog";
 
 const highPriorityColor = "#FF5353";
 const mediumPriorityColor = "#5C53FF";
@@ -231,6 +232,17 @@ function createTaskCard(projectID, taskObject) {
     editButton.addEventListener("click", (event) => {
         console.log(event.target);
         openEditTaskDialogBox(projectID, taskObject.taskID);
+    });
+
+    const previewTrigger1 = taskCard.querySelector(".task-hashtag-icon");
+    const previewTrigger2 = taskCard.querySelector(".task-title");
+    const previewTrigger3 = taskCard.querySelector(".lower-row");
+
+    [previewTrigger1, previewTrigger2, previewTrigger3].forEach((triggerElement) => {
+        triggerElement.addEventListener("click", (event) => {
+            console.log(event.target);
+            openPreviewTaskDialogBox(projectID, taskObject.taskID);
+        });
     });
 
     return taskCard;

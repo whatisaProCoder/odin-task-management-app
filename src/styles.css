@@ -1006,10 +1006,3 @@ textarea {
 .preview-task-dialog-box>.container>.dialog-header>.menu-close-button:hover {
     background-color: #E4E4E4;
 }
-
-.preview-task-dialog-box>.container>select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: none;
-}
