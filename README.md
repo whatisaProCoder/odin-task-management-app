@@ -37,7 +37,7 @@ Polymath began as a simple To-Do app project for The Odin Project curriculum. Th
 2. **Modular Architecture**: Created a clean, modular codebase with careful separation of concerns between data and presentation layers
 3. **Design Phase**: Only after the core functionality was solid, I created a modern UI design in Figma, focusing on clean aesthetics and intuitive interactions
 4. **Vanilla JS Challenge**: Despite not reaching the React section of The Odin Project yet, I decided to push forward with pure HTML, CSS, and JavaScript—challenging myself to create a professional application without frameworks
-5. **UI Implementation**: Translated the Figma designs into code, connecting the UI modules to the already-functioning core
+5. **UI Implementation**: Hand-coded every HTML element and CSS rule to pixel-perfectly replicate the Figma designs, without relying on any UI frameworks or component libraries—connecting these meticulously crafted UI modules to the already-functioning core
 6. **Desktop Application**: Extended the web app into a desktop application using Electron
 
 This methodical approach—starting with a solid core, designing intentionally, and building a beautiful UI with vanilla technologies—resulted in an application that's not only visually appealing but also robust and maintainable under the hood. It also provided invaluable experience with core web technologies before moving on to frameworks like React in the future.
@@ -83,6 +83,7 @@ This approach forced me to deeply understand core web concepts and DOM manipulat
 - **Lightweight performance**: No framework overhead means faster loading and execution
 - **Full control**: Direct DOM manipulation without framework constraints
 - **Practical learning**: Appreciating what frameworks solve by experiencing the challenges firsthand (and occasionally muttering "React would make this so much easier...")
+- **Pixel-perfect implementation**: Every element was hand-coded in HTML and CSS to exactly match the Figma designs—no component libraries or CSS frameworks, just pure craftsmanship and attention to detail
 
 This "vanilla-first" approach demonstrates that powerful, modern applications can be built with standard web technologies when combined with clean architecture principles, modular design, and a healthy dose of stubbornness.
 
@@ -145,7 +146,7 @@ polymath/
 This project showcases what's possible with fundamental web technologies:
 
 - **Vanilla JavaScript**: No frameworks like React or Vue - just pure JavaScript with modular patterns
-- **HTML & CSS**: Hand-crafted markup and styling without component libraries
+- **HTML & CSS**: Hand-crafted markup and styling without component libraries, pixel-perfectly matching the Figma designs through meticulous implementation
 - **Webpack**: For bundling and building the application
 - **LocalStorage API**: For data persistence
 - **Electron**: To transform the web app into a desktop application
