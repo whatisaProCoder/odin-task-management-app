@@ -48,7 +48,7 @@ What's perhaps most remarkable is that the entire project—from initial Figma d
 
 This project was completed in just one intensive week, from initial design to desktop application. Having built a solid foundation with vanilla technologies, my immediate focus is:
 
-- **Android Application**: Developing a native Android version as a companion app, leveraging the knowledge gained from this project
+- **Android Application**: Researching the best approach to develop an Android version of this app. I plan to explore technologies that would allow me to leverage my existing web codebase while providing a native-like experience on mobile devices.
 
 While I could continue expanding Polymath with features like cloud synchronization or analytics, my educational journey requires moving forward with The Odin Project curriculum to master additional web development concepts and technologies. The core skills developed here—particularly in modular architecture and state management—will transfer directly to future learning.
 
