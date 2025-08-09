@@ -22,7 +22,7 @@ console.log("Application successfully initialised!");
 // if building electron app
 const buildingElectronApp = true;
 if (buildingElectronApp) {
-    document.body.style.paddingTop = "40px";
+    document.body.style.paddingTop = "30px";
     document.body.style.borderRadius = "0.5rem";
     createTitleBar();
 }
