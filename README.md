@@ -395,7 +395,7 @@ This foundation will prove invaluable when I eventually learn React and other fr
 
 ## License
 
-This project is licensed under the ISC License as specified in the package.json file. A LICENSE file has been created in the project root with the full text of the ISC License. This is a permissive free software license that allows you to use, modify, and distribute this software freely, similar to the MIT and BSD licenses.
+This project is licensed under the ISC License. It is a permissive free software license that allows you to use, modify, and distribute this software freely, similar to the MIT and BSD licenses.
 
 ---
 
