@@ -372,10 +372,6 @@ Available makers:
 - `html-loader`, `html-webpack-plugin`: HTML processing for webpack
 - `webpack-dev-server`: Development server with hot reloading
 
-## 👥 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## � Learning Journey
 
 This project represents a significant milestone in my web development journey through The Odin Project curriculum. Before reaching the React section, I wanted to prove to myself that I could build a sophisticated application using just the fundamental technologies I had learned so far.
