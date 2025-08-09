@@ -303,11 +303,21 @@ The application is packaged for desktop platforms using:
    npm install
    ```
 
-2. **Start Electron application:**
+2. **Build the application:**
+
+   ```bash
+   npm run build
+   ```
+
+   This step is required before running the Electron app to generate the necessary web assets.
+
+3. **Start Electron application:**
 
    ```bash
    npm run start:electron
    ```
+
+   **Important:** You must run `npm run build` first before `npm run start:electron` to see any changes made to the codebase. This is how the project is configured.
 
    This launches the application in Electron for development
 
