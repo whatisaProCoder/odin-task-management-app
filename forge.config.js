@@ -1,10 +1,11 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+const path = require('path');
 
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: "./src/icons/favicon.ico"
+    icon: path.resolve(__dirname, 'src/icons/favicon')
   },
   rebuildConfig: {},
   makers: [
@@ -22,7 +23,7 @@ module.exports = {
           desktop: true, // Create desktop shortcut
           startMenu: true // Create Start Menu shortcut
         },
-        iconPath: './src/icons/favicon.ico'
+        iconPath: path.resolve(__dirname, 'src/icons/favicon.ico')
       }
     },
     {
