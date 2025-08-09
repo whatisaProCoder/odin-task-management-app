@@ -16,7 +16,7 @@ module.exports = {
         authors: 'Pritam Debnath',
         description: 'Intuitive Task Management App',
         setupIcon: "app.ico", // installer icon
-        iconUrl: 'https://raw.githubusercontent.com/whatisaProCoder/whatisaProCoder/refs/heads/main/polymath.ico', // should be a publicly accessible .ico URL
+        iconUrl: 'https://raw.githubusercontent.com/whatisaProCoder/whatisaProCoder/refs/heads/main/squirrel_app_icons/polymath.ico', // should be a publicly accessible .ico URL
         shortcutName: 'Polymath', // shortcut name in Start Menu/Desktop
       }
     },
