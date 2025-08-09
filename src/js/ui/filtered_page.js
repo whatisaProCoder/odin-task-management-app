@@ -15,6 +15,7 @@ import { handleAddTaskDialogBox } from "../ui/add_task_dialog";
 import { compareAsc, format } from "date-fns";
 import { openEditTaskDialogBox } from "./edit_task_dialog";
 import editIcon from "../../icons/edit_icon.svg";
+import { openPreviewTaskDialogBox } from "./preview_task_dialog";
 
 const taskManager = new TaskManager();
 
@@ -128,6 +129,17 @@ function createTaskCard(projectID, taskObject) {
     editButton.addEventListener("click", (event) => {
         console.log(event.target);
         openEditTaskDialogBox(projectID, taskObject.taskID);
+    });
+
+    const previewTrigger1 = taskCard.querySelector(".task-hashtag-icon");
+    const previewTrigger2 = taskCard.querySelector(".task-title");
+    const previewTrigger3 = taskCard.querySelector(".lower-row");
+
+    [previewTrigger1, previewTrigger2, previewTrigger3].forEach((triggerElement) => {
+        triggerElement.addEventListener("click", (event) => {
+            console.log(event.target);
+            openPreviewTaskDialogBox(projectID, taskObject.taskID);
+        });
     });
 
     return taskCard;

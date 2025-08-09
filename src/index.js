@@ -7,6 +7,7 @@ import initialiseEditTaskDialogBox from "./js/ui/edit_task_dialog";
 
 initialiseAddTaskDialogBox();
 initialiseEditTaskDialogBox();
+initialisePreviewTaskDialogBox();
 
 initialiseSidebar();
 
@@ -18,8 +19,11 @@ console.log("Application successfully initialised!");
 
 // if building electron app
 import createTitleBar from "./js/ui/electron_custom_title_bar";
+import initialisePreviewTaskDialogBox from "./js/ui/preview_task_dialog";
 document.body.style.paddingTop = "40px";
 document.body.style.borderRadius = "0.5rem";
 createTitleBar();
+
+
 
 
