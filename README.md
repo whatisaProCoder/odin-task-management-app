@@ -154,8 +154,6 @@ This project showcases what's possible with fundamental web technologies:
 - **Date-fns**: For date manipulation and formatting
 - **Smooth-scrollbar**: For custom scrollbar implementation
 
-The decision to use vanilla technologies instead of frameworks like React was intentional. Well, "intentional" might be a bit generous—I hadn't quite reached the React section in The Odin Project curriculum yet! So in true developer fashion, I thought, "How hard could it be to build everything from scratch?" 😅
-
 For context, this Todo App project appears in the JavaScript Course, specifically in the "JavaScript Path" section of The Odin Project curriculum. It comes toward the end of the JavaScript section, just before the React material begins. At this point in the curriculum, I had completed only about 34% of the JavaScript path, still working through core concepts like ES6 features, modules, and webpack—with a lot more ground to cover before reaching frameworks and advanced topics.
 
 Turns out, pretty challenging when you're manually handling DOM updates that React would manage automatically. But this "skill issue" turned blessing in disguise forced me to really understand the DOM, event delegation, and state management from first principles. Nothing teaches you to appreciate frameworks quite like writing your 100th event listener by hand!
