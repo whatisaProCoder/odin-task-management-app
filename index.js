@@ -5,6 +5,8 @@ if (require('electron-squirrel-startup')) {
     app.quit();
 }
 
+const { shell } = require('electron');
+
 function createWindow() {
     const win = new BrowserWindow({
         width: 1200,
@@ -23,6 +25,11 @@ function createWindow() {
     win.loadFile(path.join(__dirname, 'dist', 'index.html'));
 
     win.removeMenu();
+
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' };
+    });
 
     // Uncomment to open DevTools for debugging
     // win.webContents.openDevTools();
