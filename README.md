@@ -11,6 +11,9 @@ An intuitive task management application built with modern web technologies and 
   - [Future Plans](#future-plans)
 - [Features](#features)
 - [Architecture](#architecture)
+  - [Plain JavaScript Excellence](#plain-javascript-excellence)
+  - [Data Flow](#data-flow)
+- [Technologies](#technologies)
 - [Project Structure](#project-structure)
 - [Core Modules](#core-modules)
 - [UI Components](#ui-components)
@@ -19,6 +22,8 @@ An intuitive task management application built with modern web technologies and 
 - [Build and Deployment](#build-and-deployment)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
+- [Learning Journey](#learning-journey)
+- [Acknowledgements](#acknowledgements)
 
 ## 🚀 Introduction
 
@@ -26,16 +31,16 @@ Polymath is a task management application designed to help users organize their 
 
 ### 🧠 Project Journey
 
-Polymath began as a simple To-Do app project for The Odin Project curriculum. What started as a basic exercise in vanilla JavaScript quickly evolved as I fell in love with building a practical, everyday application:
+Polymath began as a simple To-Do app project for The Odin Project curriculum. This project is part of the JavaScript Course in the "JavaScript Path" section, appearing just before the React section begins. At the time of building this app, I had completed roughly 34% of the JavaScript path. What started as a basic exercise in vanilla JavaScript quickly evolved as I fell in love with building a practical, everyday application:
 
 1. **Core-First Development**: I built the functional core modules first, implementing robust data structures and storage functionality before any UI work began—ensuring a solid foundation
 2. **Modular Architecture**: Created a clean, modular codebase with careful separation of concerns between data and presentation layers
 3. **Design Phase**: Only after the core functionality was solid, I created a modern UI design in Figma, focusing on clean aesthetics and intuitive interactions
-4. **UI Implementation**: Translated the Figma designs into code, connecting the UI modules to the already-functioning core
-5. **Vanilla JS Power**: Built entirely with vanilla JavaScript, HTML, and CSS—proving that modern, powerful applications don't always require frameworks like React
+4. **Vanilla JS Challenge**: Despite not reaching the React section of The Odin Project yet, I decided to push forward with pure HTML, CSS, and JavaScript—challenging myself to create a professional application without frameworks
+5. **UI Implementation**: Translated the Figma designs into code, connecting the UI modules to the already-functioning core
 6. **Desktop Application**: Extended the web app into a desktop application using Electron
 
-This methodical approach—starting with a solid core, designing intentionally, and then building a beautiful UI—resulted in an application that's not only visually appealing but also robust and maintainable under the hood.
+This methodical approach—starting with a solid core, designing intentionally, and building a beautiful UI with vanilla technologies—resulted in an application that's not only visually appealing but also robust and maintainable under the hood. It also provided invaluable experience with core web technologies before moving on to frameworks like React in the future.
 
 ### 🔮 Future Plans
 
@@ -66,7 +71,20 @@ Polymath follows a modular architecture with clear separation between:
 - **UI Components**: Manages the presentation layer and user interactions
 - **Desktop Integration**: Provides platform-specific features through Electron
 
-What makes Polymath special is its implementation using vanilla JavaScript modules instead of a framework like React or Vue. This demonstrates the power of modern JavaScript and how clean architecture principles can create maintainable, scalable applications without relying on heavy frameworks.
+### Plain JavaScript Excellence
+
+What makes Polymath special is its implementation using **100% vanilla JavaScript, HTML, and CSS** without any frameworks. While I initially planned to learn React through The Odin Project curriculum, I decided to challenge myself by pushing the boundaries of what's possible with pure vanilla technologies first.
+
+Or more accurately, I hadn't quite reached the React section yet due to my, uh, _methodical_ learning pace (let's call it that instead of "skill issues" 😅). So in true developer fashion, I thought, "How hard could it be to build everything from scratch?" Turns out, pretty hard—but also incredibly rewarding!
+
+This approach forced me to deeply understand core web concepts and DOM manipulation, resulting in:
+
+- **Superior foundational knowledge**: Mastering the fundamentals before adding framework abstractions
+- **Lightweight performance**: No framework overhead means faster loading and execution
+- **Full control**: Direct DOM manipulation without framework constraints
+- **Practical learning**: Appreciating what frameworks solve by experiencing the challenges firsthand (and occasionally muttering "React would make this so much easier...")
+
+This "vanilla-first" approach demonstrates that powerful, modern applications can be built with standard web technologies when combined with clean architecture principles, modular design, and a healthy dose of stubbornness.
 
 ### Data Flow
 
@@ -121,6 +139,26 @@ polymath/
 ├── package.json             # Project dependencies and scripts
 └── README.md                # Project documentation
 ```
+
+## 🛠 Technologies
+
+This project showcases what's possible with fundamental web technologies:
+
+- **Vanilla JavaScript**: No frameworks like React or Vue - just pure JavaScript with modular patterns
+- **HTML & CSS**: Hand-crafted markup and styling without component libraries
+- **Webpack**: For bundling and building the application
+- **LocalStorage API**: For data persistence
+- **Electron**: To transform the web app into a desktop application
+- **Date-fns**: For date manipulation and formatting
+- **Smooth-scrollbar**: For custom scrollbar implementation
+
+The decision to use vanilla technologies instead of frameworks like React was intentional. Well, "intentional" might be a bit generous—I hadn't quite reached the React section in The Odin Project curriculum yet! So in true developer fashion, I thought, "How hard could it be to build everything from scratch?" 😅
+
+For context, this Todo App project appears in the JavaScript Course, specifically in the "JavaScript Path" section of The Odin Project curriculum. It comes toward the end of the JavaScript section, just before the React material begins. At this point in the curriculum, I had completed only about 34% of the JavaScript path, still working through core concepts like ES6 features, modules, and webpack—but was nowhere near the React territory that would have made this project significantly easier!
+
+Turns out, pretty challenging when you're manually handling DOM updates that React would manage automatically. But this "skill issue" turned blessing in disguise forced me to really understand the DOM, event delegation, and state management from first principles. Nothing teaches you to appreciate frameworks quite like writing your 100th event listener by hand!
+
+This vanilla JS journey provided a much deeper understanding of core web concepts that will ultimately make me a better developer when I do (finally) get to learn frameworks.
 
 ## 🧠 Core Modules
 
@@ -307,7 +345,20 @@ Available makers:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 🙏 Acknowledgements
+## � Learning Journey
+
+This project represents a significant milestone in my web development journey through The Odin Project curriculum. Before reaching the React section, I wanted to prove to myself that I could build a sophisticated application using just the fundamental technologies I had learned so far.
+
+Key learnings from this approach:
+
+- **DOM Manipulation Mastery**: Developed deep understanding of working directly with the DOM
+- **Module Pattern Proficiency**: Learned to organize code into maintainable modules without framework assistance
+- **State Management Challenges**: Implemented custom state management, appreciating what frameworks provide
+- **CSS Architecture**: Created a scalable styling system from scratch
+
+This foundation will prove invaluable when I eventually learn React and other frameworks, as I'll understand what's happening "under the hood" and make better architectural decisions.
+
+## �🙏 Acknowledgements
 
 - **The Odin Project**: This project began as a simple Todo app assignment in The Odin Project curriculum and evolved far beyond the original scope
 - **Figma**: Used for designing the modern UI/UX before implementation
