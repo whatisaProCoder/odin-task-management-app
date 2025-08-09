@@ -79,12 +79,17 @@ What makes Polymath special is its implementation using vanilla JavaScript modul
 
 ```
 polymath/
-├── src/                     # Source files
-│   ├── index.js             # Main entry point
+├── src/                     # Source files (web application)
+│   ├── index.js             # Web entry point
 │   ├── styles.css           # Global stylesheets
 │   ├── template.html        # HTML template
 │   ├── fonts/               # Custom font files
+│   │   └── Inter.ttf        # Inter font
 │   ├── icons/               # Icon assets
+│   │   ├── favicon.svg      # Application favicon
+│   │   ├── menu_icon.svg    # Menu icons
+│   │   ├── priority_icon.svg # Priority indicator icons
+│   │   └── ...              # Other UI icons
 │   └── js/                  # JavaScript modules
 │       ├── core/            # Core logic modules
 │       │   ├── cryptography.js       # ID generation utilities
@@ -104,6 +109,12 @@ polymath/
 │           ├── scrollbar.js          # Custom scrollbar
 │           ├── sidebar.js            # Application sidebar
 │           └── welcome_page.js       # Welcome screen
+├── index.js                 # Electron main process entry point
+├── preload.js               # Electron preload script for security
+├── forge.config.js          # Electron Forge configuration
+├── app.ico                  # Application icon
+├── data.json                # Sample data for development
+├── .gitignore               # Git ignore configuration
 ├── webpack.common.js        # Shared webpack configuration
 ├── webpack.dev.js           # Development webpack configuration
 ├── webpack.prod.js          # Production webpack configuration
@@ -145,6 +156,10 @@ Central manager for all task-related operations. Key functions:
 
 Provides utility functions for generating unique IDs using `crypto.randomUUID()`.
 
+### Additional Data Files
+
+- **`data.json`**: Contains sample data used for development and testing purposes. Can also be used to restore defaults or provide examples to new users.
+
 ## 🖼️ UI Components
 
 ### Sidebar (`sidebar.js`)
@@ -179,6 +194,12 @@ Displays all tasks within a project and provides project management options:
 ## 🖥️ Electron Integration
 
 Polymath can be run as a desktop application using Electron. Key features:
+
+### Main Process Files
+
+- **`index.js`**: The Electron main process entry point that creates the application window, manages application lifecycle, and sets up IPC communication
+- **`preload.js`**: Security-focused preload script that safely exposes only specific APIs to the renderer process
+- **`forge.config.js`**: Configuration for Electron Forge, defining build targets, packaging options, and publisher settings
 
 ### Custom Title Bar (`electron_custom_title_bar.js`)
 
