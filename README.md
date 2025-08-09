@@ -385,7 +385,7 @@ Key learnings from this approach:
 
 This foundation will prove invaluable when I eventually learn React and other frameworks, as I'll understand what's happening "under the hood" and make better architectural decisions.
 
-## �🙏 Acknowledgements
+## Acknowledgements
 
 - **The Odin Project**: This project began as a simple Todo app assignment in The Odin Project curriculum and evolved far beyond the original scope
 - **Figma**: Used for designing the modern UI/UX before implementation
