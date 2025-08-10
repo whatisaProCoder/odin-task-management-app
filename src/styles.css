@@ -44,6 +44,10 @@ body {
     .welcome-page>.user-prompt {
         font-size: 1.25rem !important;
     }
+
+    .task-card>.edit-button {
+        display: block !important;
+    }
 }
 
 @media screen and (max-width:750px) {
@@ -268,7 +272,6 @@ body {
     flex-direction: column;
     border: 0px solid #DCDCDC;
     border-bottom-width: 1px;
-    height: 3.5rem;
     padding: 0.5rem;
     padding-bottom: 0;
     position: relative;
@@ -281,7 +284,7 @@ body {
 .task-card>.upper-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
 }
 
 .task-card>.upper-row>.task-card-checkbox {
@@ -322,15 +325,15 @@ body {
 
 .task-card>.edit-button {
     display: none;
-}
-
-.task-card:hover>.edit-button {
-    display: block;
     position: absolute;
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
     height: 1.25rem;
+}
+
+.task-card:hover>.edit-button {
+    display: block;
 }
 
 dialog {
