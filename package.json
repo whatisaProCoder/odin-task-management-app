@@ -7,7 +7,8 @@
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "start:electron": "electron .",
-    "deploy": "git branch gh-pages && git status && git add . && git commit -m \"final deployment\" && git checkout gh-pages && git merge main --no-edit && npm run build && git add dist -f && git commit -m \"Deployment commit\" && git subtree push --prefix dist origin gh-pages && git checkout main",
+    "make-deployment-branch": "git branch gh-pages",
+    "deploy-web": "git status && git add . && git commit -m \"final deployment\" && git checkout gh-pages && git merge main --no-edit && npm run build && git add dist -f && git commit -m \"Deployment commit\" && git subtree push --prefix dist origin gh-pages && git checkout main",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
