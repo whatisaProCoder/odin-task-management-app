@@ -34,15 +34,15 @@ body {
 
 @media screen and (max-width:450px) {
     .welcome-page>.text {
-        font-size: 1.5rem;
+        font-size: 1.5rem !important;
     }
 
     .welcome-page>.subtext {
-        font-size: 0.75rem;
+        font-size: 0.75rem !important;
     }
 
     .welcome-page>.user-prompt {
-        font-size: 1.5rem;
+        font-size: 1.25rem !important;
     }
 }
 
