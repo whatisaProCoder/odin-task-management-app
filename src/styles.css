@@ -78,10 +78,6 @@ body {
     .welcome-page {
         padding-right: 2.5rem !important;
     }
-
-    .task-card>.edit-button {
-        display: block !important;
-    }
 }
 
 .sidebar-closing {
