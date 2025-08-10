@@ -60,6 +60,7 @@ While I could continue expanding Polymath with features like cloud synchronizati
 - **Due Dates**: Set and track task deadlines
 - **Task Details**: Add descriptions and notes to tasks
 - **Data Persistence**: All data is saved to localStorage
+- **Data Backup**: Export and import your data as JSON files for backup and transfer
 - **Responsive UI**: Clean, intuitive interface with smooth interactions
 - **Desktop Application**: Packaged as an Electron application with custom title bar
 - **Cross-Platform**: Works on Windows, macOS, and Linux
@@ -169,6 +170,11 @@ Manages data persistence using the browser's localStorage API. Key functions:
 - `getData(key)`: Retrieves data from localStorage
 - `setData(key, dataObject)`: Stores data to localStorage
 - `clearAllStorage()`: Clears all data from localStorage
+
+Additionally, the application provides data backup features:
+
+- **Export to JSON**: Export all your task data to a downloadable JSON file
+- **Import from JSON**: Restore your data by importing a previously exported JSON file
 
 ### `taskClass.js`
 
