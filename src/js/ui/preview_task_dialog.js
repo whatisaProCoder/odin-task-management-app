@@ -52,9 +52,11 @@ export function openPreviewTaskDialogBox(projectID, taskID) {
     const projectInputField = previewTaskDialogBox.querySelector("#select-project");
     const titleInputField = previewTaskDialogBox.querySelector("#title-field");
     const descriptionField = previewTaskDialogBox.querySelector("#description-field");
+    const descriptionFieldLabel = previewTaskDialogBox.querySelector("#preview-dialog-description-label");
     const dueDateField = previewTaskDialogBox.querySelector("#due-date-field");
     const priorityField = previewTaskDialogBox.querySelector("#select-priority");
     const notesField = previewTaskDialogBox.querySelector("#notes-field");
+    const notesFieldLabel = previewTaskDialogBox.querySelector("#preview-dialog-notes-label")
 
     const project = taskManager.getProject(projectID);
     const task = taskManager.getTask(projectID, taskID);
@@ -68,14 +70,18 @@ export function openPreviewTaskDialogBox(projectID, taskID) {
 
     if (task.description === "") {
         descriptionField.style.display = "none";
-        const label = previewTaskDialogBox.querySelector("#preview-dialog-description-label");
-        label.style.display = "none";
+        descriptionFieldLabel.style.display = "none";
+    } else {
+        descriptionField.style.display = "block";
+        descriptionFieldLabel.style.display = "block";
     }
 
     if (task.notes === "") {
         notesField.style.display = "none";
-        const label = previewTaskDialogBox.querySelector("#preview-dialog-notes-label");
-        label.style.display = "none";
+        notesFieldLabel.style.display = "none";
+    } else {
+        notesField.style.display = "block";
+        notesFieldLabel.style.display = "block";
     }
 
     const closeButton = previewTaskDialogBox.querySelector(".menu-close-button");
