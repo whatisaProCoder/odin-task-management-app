@@ -32,6 +32,20 @@ body {
     transition: opacity 0.1s ease, width 0.2s ease, height 0.8s ease;
 }
 
+@media screen and (max-width:450px) {
+    .welcome-page>.text {
+        font-size: 1.5rem;
+    }
+
+    .welcome-page>.subtext {
+        font-size: 0.75rem;
+    }
+
+    .welcome-page>.user-prompt {
+        font-size: 1.5rem;
+    }
+}
+
 @media screen and (max-width:750px) {
     body {
         flex-direction: column;
