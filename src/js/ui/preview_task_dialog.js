@@ -22,12 +22,12 @@ export default function initialisePreviewTaskDialogBox() {
                     <div class="input-field-label" id="select-project-label">Project</div>
                     <input type="text" id="select-project" class="input-field" disabled>
                     <div class="input-field-label">Title</div>
-                    <input type="text" id="title-field" class="input-field" disabled>
+                    <textarea type="text" id="title-field" class="input-field" disabled></textarea>
                     <div class="input-field-label" id="preview-dialog-description-label">Description</div>
                     <textarea id="description-field" class="input-field" disabled></textarea>
                     <div class="icon-label-container">
                         <img src="${accentAlarmIcon}">
-                        <div class="input-field-label">Add due date and time</div>
+                        <div class="input-field-label">Due date and time</div>
                     </div>
                     <input type="datetime-local" id="due-date-field" class="input-field" disabled style="padding-right: 0.375rem;">
                     <div class="icon-label-container">
@@ -81,7 +81,7 @@ export function openPreviewTaskDialogBox(projectID, taskID) {
         notesFieldLabel.style.display = "none";
     } else {
         notesField.style.display = "block";
-        notesFieldLabel.style.display = "block";
+        notesFieldLabel.style.display = "flex";
     }
 
     const closeButton = previewTaskDialogBox.querySelector(".menu-close-button");

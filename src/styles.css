@@ -575,7 +575,7 @@ dialog:open::backdrop {
     border-radius: 0.25rem;
 }
 
-.rename-project-dialog-box>.container>.dialog-header>.menu-close-button {
+.rename-project-dialog-box>.container>.dialog-header>.menu-close-button:hover {
     background-color: #E4E4E4;
 }
 
