@@ -8,6 +8,7 @@
     "dev": "webpack serve --config webpack.dev.js",
     "start:electron": "electron .",
     "deploy:make-branch": "git branch gh-pages",
+    "deploy:delete-branch": "git branch -D gh-pages && git push origin --delete gh-pages",
     "deploy:sync-branch": "git status && git add . && git commit -m \"final deployment\" && git checkout gh-pages && git merge main --no-edit",
     "deploy:build-web": "npm run build",
     "deploy:upload": "git add dist -f && git commit -m \"Deployment commit\" && git subtree push --prefix dist origin gh-pages && git checkout main",
