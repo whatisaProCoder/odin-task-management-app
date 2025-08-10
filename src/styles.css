@@ -44,10 +44,6 @@ body {
     .welcome-page>.user-prompt {
         font-size: 1.25rem !important;
     }
-
-    .task-card>.edit-button {
-        display: block !important;
-    }
 }
 
 @media screen and (max-width:750px) {
@@ -81,6 +77,10 @@ body {
 
     .welcome-page {
         padding-right: 2.5rem !important;
+    }
+
+    .task-card>.edit-button {
+        display: block !important;
     }
 }
 
