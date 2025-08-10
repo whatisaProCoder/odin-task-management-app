@@ -9,10 +9,10 @@ const { shell } = require('electron');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 950,
+        height: 650,
         minWidth: 400,
-        minHeight: 700,
+        minHeight: 600,
         titleBarStyle: 'hidden',
         icon: path.join(__dirname, "src", "icons", "favicon.png"),
         webPreferences: {
