@@ -1,12 +1,15 @@
 import closeIcon from "../../icons/titlebar_close_icon.svg";
 import maximizeIcon from "../../icons/titlebar_maximize_icon.svg";
 import minimizeIcon from "../../icons/titlebar_minimize_icon.svg";
+import favicon from "../../icons/favicon.svg";
 
 export default function createTitleBar() {
   const titleBar = document.createElement("div");
   titleBar.classList.add("title-bar");
   titleBar.innerHTML = /* html */ `
-        <div class="draggable"></div>  
+        <div class="draggable">
+            <img src="${favicon}">
+        </div>  
         <div class="icon-group">
             <img id="minimize" src="${minimizeIcon}">
             <img id="maximize" src="${maximizeIcon}">

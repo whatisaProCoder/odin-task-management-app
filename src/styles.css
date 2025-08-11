@@ -908,6 +908,9 @@ textarea {
   flex: 1;
   height: 100%;
   app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .title-bar > .icon-group {
@@ -920,6 +923,11 @@ textarea {
 
 .title-bar > .icon-group > img {
   height: 1.375rem;
+}
+
+.title-bar > .draggable > img {
+  height: 1.375rem;
+  margin-left: 0.25rem;
 }
 
 .popups-container {

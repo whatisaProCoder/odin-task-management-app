@@ -5,7 +5,6 @@ import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
 import Task from "../core/taskClass";
 import createProjectPage from "./project_page";
-import { compareAsc, format } from "date-fns";
 import { showAlert } from "./custom_popups";
 
 const taskManager = new TaskManager();
@@ -119,6 +118,11 @@ function handleSaveAction(dialogBoxReference, projectID) {
 
   const handleSubmit = (event) => {
     console.log(event.target);
+
+    if (selectProjectInputField.value == "") {
+      showAlert(dialogBoxReference, "Select the name of the project!");
+      return;
+    }
 
     if (titleInputField.value == "") {
       showAlert(dialogBoxReference, "Enter title of the task!");
