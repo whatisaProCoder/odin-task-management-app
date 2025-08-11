@@ -126,7 +126,6 @@ function closeSidebarifMobile() {
 
 function handleFilteredSection() {
   const sidebarElement = document.querySelector(".sidebar");
-  const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
   const todaysTasksItem = sidebarElement.querySelector("#todays-tasks-item");
   const upcomingTasksItem = sidebarElement.querySelector(
     "#upcoming-tasks-item",

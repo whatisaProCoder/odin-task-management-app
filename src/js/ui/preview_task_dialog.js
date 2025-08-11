@@ -3,10 +3,6 @@ import notesIcon from "../../icons/notes_icon.svg";
 import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
-import Task from "../core/taskClass";
-import createProjectPage from "./project_page";
-import { compareAsc, format } from "date-fns";
-import { showAlert } from "./custom_popups";
 
 const taskManager = new TaskManager();
 

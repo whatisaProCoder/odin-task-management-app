@@ -1,6 +1,6 @@
 import StorageManager from "./storageModule";
 import generateID from "./cryptography";
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 
 export default class TaskManager {
   constructor() {

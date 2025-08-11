@@ -3,11 +3,9 @@ import notesIcon from "../../icons/notes_icon.svg";
 import priorityIcon from "../../icons/priority_icon.svg";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import TaskManager from "../core/taskManager";
-import Task, { ExistingTask } from "../core/taskClass";
+import { ExistingTask } from "../core/taskClass";
 import createProjectPage from "./project_page";
-import { compareAsc, format } from "date-fns";
-import { showConfirm } from "./custom_popups";
-import { populateProjectSection } from "./sidebar";
+import { showConfirm, showAlert } from "./custom_popups";
 
 const taskManager = new TaskManager();
 
@@ -105,10 +103,6 @@ function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
     if (dueDateField.value == "") {
       showAlert(dialogBoxReference, "Please select date and time of deadline.");
       return;
-    }
-
-    if (projectID == null) {
-      projectID = selectProjectInputField.value;
     }
 
     taskManager.updateTask(

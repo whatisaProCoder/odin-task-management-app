@@ -1,4 +1,4 @@
-import Task, { ExistingTask } from "../core/taskClass";
+import { ExistingTask } from "../core/taskClass";
 import TaskManager from "../core/taskManager";
 import StorageManager from "../core/storageModule";
 import menuIcon from "../../icons/menu_icon.svg";
@@ -13,7 +13,7 @@ import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { populateProjectSection } from "./sidebar";
 import createBlankPage from "./black_page";
 import { handleAddTaskDialogBox } from "../ui/add_task_dialog";
-import { compareAsc, format } from "date-fns";
+import { format } from "date-fns";
 import { openEditTaskDialogBox } from "./edit_task_dialog";
 import editIcon from "../../icons/edit_icon.svg";
 import download from "downloadjs";
@@ -161,6 +161,7 @@ function handleMenuState(projectID) {
       const menuCloseButton =
         renameProjectDialogBox.querySelector(".menu-close-button");
       menuCloseButton.addEventListener("click", (event) => {
+        console.log(event.target);
         renameProjectDialogBox.close();
       });
 

@@ -20,6 +20,7 @@ export function showAlert(superDialogBoxReference, text) {
   dialogBoxReference
     .querySelector(".yes-button")
     .addEventListener("click", (event) => {
+      console.log(event.target);
       dialogBoxReference.close();
       superDialogBoxReference.showModal();
       setTimeout(() => {
@@ -55,6 +56,7 @@ export async function showConfirm(superDialogBoxReference, text) {
     dialogBoxReference
       .querySelector(".yes-button")
       .addEventListener("click", (event) => {
+        console.log(event.target);
         dialogBoxReference.close();
         resolve(true);
         superDialogBoxReference.showModal();
@@ -65,6 +67,7 @@ export async function showConfirm(superDialogBoxReference, text) {
     dialogBoxReference
       .querySelector(".no-button")
       .addEventListener("click", (event) => {
+        console.log(event.target);
         dialogBoxReference.close();
         resolve(false);
         superDialogBoxReference.showModal();
