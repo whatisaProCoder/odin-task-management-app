@@ -1,3 +1,3 @@
 export default function generateID() {
-    return crypto.randomUUID();
+  return crypto.randomUUID();
 }

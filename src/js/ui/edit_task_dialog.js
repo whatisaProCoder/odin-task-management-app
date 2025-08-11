@@ -12,8 +12,8 @@ import { populateProjectSection } from "./sidebar";
 const taskManager = new TaskManager();
 
 export default function initialiseEditTaskDialogBox() {
-    const editTaskDialogBox = document.createElement("div");
-    editTaskDialogBox.innerHTML = /* html */ `
+  const editTaskDialogBox = document.createElement("div");
+  editTaskDialogBox.innerHTML = /* html */ `
                     <dialog class="edit-task-dialog-box" closeby="any">
                 <div class="container">
                     <div class="dialog-header">
@@ -51,110 +51,117 @@ export default function initialiseEditTaskDialogBox() {
             </dialog>
     `;
 
-    document.body.append(editTaskDialogBox);
+  document.body.append(editTaskDialogBox);
 }
 
 export function openEditTaskDialogBox(projectID, taskID) {
-    const editTaskDialogBox = document.querySelector(".edit-task-dialog-box");
-    const titleInputField = editTaskDialogBox.querySelector("#title-field");
-    const descriptionField = editTaskDialogBox.querySelector("#description-field");
-    const dueDateField = editTaskDialogBox.querySelector("#due-date-field");
-    const priorityField = editTaskDialogBox.querySelector("#select-priority");
-    const notesField = editTaskDialogBox.querySelector("#notes-field");
+  const editTaskDialogBox = document.querySelector(".edit-task-dialog-box");
+  const titleInputField = editTaskDialogBox.querySelector("#title-field");
+  const descriptionField =
+    editTaskDialogBox.querySelector("#description-field");
+  const dueDateField = editTaskDialogBox.querySelector("#due-date-field");
+  const priorityField = editTaskDialogBox.querySelector("#select-priority");
+  const notesField = editTaskDialogBox.querySelector("#notes-field");
 
-    const task = taskManager.getTask(projectID, taskID);
+  const task = taskManager.getTask(projectID, taskID);
 
-    titleInputField.value = task.title;
-    descriptionField.value = task.description;
-    dueDateField.value = task.dueDate;
-    priorityField.value = task.priority;
-    notesField.value = task.notes;
+  titleInputField.value = task.title;
+  descriptionField.value = task.description;
+  dueDateField.value = task.dueDate;
+  priorityField.value = task.priority;
+  notesField.value = task.notes;
 
-    const closeButton = editTaskDialogBox.querySelector(".menu-close-button");
-    const cloneCloseButton = closeButton.cloneNode(true);
-    closeButton.replaceWith(cloneCloseButton);
-    cloneCloseButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        editTaskDialogBox.close();
-        clearAllInputFields();
-    });
+  const closeButton = editTaskDialogBox.querySelector(".menu-close-button");
+  const cloneCloseButton = closeButton.cloneNode(true);
+  closeButton.replaceWith(cloneCloseButton);
+  cloneCloseButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    editTaskDialogBox.close();
+    clearAllInputFields();
+  });
 
-    editTaskDialogBox.showModal();
+  editTaskDialogBox.showModal();
 
-    handleSaveAction(editTaskDialogBox, projectID, taskID, task.complete);
-    handleDeleteAction(editTaskDialogBox, projectID, taskID);
+  handleSaveAction(editTaskDialogBox, projectID, taskID, task.complete);
+  handleDeleteAction(editTaskDialogBox, projectID, taskID);
 }
 
 function handleSaveAction(dialogBoxReference, projectID, taskID, complete) {
-    const titleInputField = dialogBoxReference.querySelector("#title-field");
-    const descriptionField = dialogBoxReference.querySelector("#description-field");
-    const dueDateField = dialogBoxReference.querySelector("#due-date-field");
-    const priorityField = dialogBoxReference.querySelector("#select-priority");
-    const notesField = dialogBoxReference.querySelector("#notes-field");
+  const titleInputField = dialogBoxReference.querySelector("#title-field");
+  const descriptionField =
+    dialogBoxReference.querySelector("#description-field");
+  const dueDateField = dialogBoxReference.querySelector("#due-date-field");
+  const priorityField = dialogBoxReference.querySelector("#select-priority");
+  const notesField = dialogBoxReference.querySelector("#notes-field");
 
-    const handleSubmit = (event) => {
-        console.log(event.target);
+  const handleSubmit = (event) => {
+    console.log(event.target);
 
-        if (titleInputField.value == "") {
-            showAlert(dialogBoxReference, "Enter title of the task!");
-            return;
-        }
+    if (titleInputField.value == "") {
+      showAlert(dialogBoxReference, "Enter title of the task!");
+      return;
+    }
 
-        if (dueDateField.value == "") {
-            showAlert(dialogBoxReference, "Please select date and time of deadline.")
-            return;
-        }
+    if (dueDateField.value == "") {
+      showAlert(dialogBoxReference, "Please select date and time of deadline.");
+      return;
+    }
 
-        if (projectID == null) {
-            projectID = selectProjectInputField.value;
-        }
+    if (projectID == null) {
+      projectID = selectProjectInputField.value;
+    }
 
-        taskManager.updateTask(taskID, new ExistingTask(
-            taskID,
-            titleInputField.value,
-            descriptionField.value,
-            dueDateField.value,
-            priorityField.value,
-            notesField.value,
-            complete
-        ));
-        createProjectPage(projectID);
-        clearAllInputFields();
+    taskManager.updateTask(
+      taskID,
+      new ExistingTask(
+        taskID,
+        titleInputField.value,
+        descriptionField.value,
+        dueDateField.value,
+        priorityField.value,
+        notesField.value,
+        complete,
+      ),
+    );
+    createProjectPage(projectID);
+    clearAllInputFields();
 
+    dialogBoxReference.close();
+  };
 
-        dialogBoxReference.close();
-    };
+  const submitButton = dialogBoxReference.querySelector(".submit-button");
+  const cloneSubmitButton = submitButton.cloneNode(true);
+  submitButton.replaceWith(cloneSubmitButton);
 
-    const submitButton = dialogBoxReference.querySelector(".submit-button");
-    const cloneSubmitButton = submitButton.cloneNode(true);
-    submitButton.replaceWith(cloneSubmitButton);
-
-    cloneSubmitButton.addEventListener("click", handleSubmit);
+  cloneSubmitButton.addEventListener("click", handleSubmit);
 }
 
 function handleDeleteAction(dialogBoxReference, projectID, taskID) {
-    async function handleDelete(event) {
-        console.log(event.target);
-        const userConfirmation = await showConfirm(dialogBoxReference, "Do you want to delete this task?");
-        if (userConfirmation) {
-            taskManager.removeTask(projectID, taskID);
-            createProjectPage(projectID);
+  async function handleDelete(event) {
+    console.log(event.target);
+    const userConfirmation = await showConfirm(
+      dialogBoxReference,
+      "Do you want to delete this task?",
+    );
+    if (userConfirmation) {
+      taskManager.removeTask(projectID, taskID);
+      createProjectPage(projectID);
 
-            clearAllInputFields();
-            dialogBoxReference.close();
-        }
-    };
+      clearAllInputFields();
+      dialogBoxReference.close();
+    }
+  }
 
-    const deleteButton = dialogBoxReference.querySelector(".delete-button");
-    const cloneDeleteButton = deleteButton.cloneNode(true);
-    deleteButton.replaceWith(cloneDeleteButton);
+  const deleteButton = dialogBoxReference.querySelector(".delete-button");
+  const cloneDeleteButton = deleteButton.cloneNode(true);
+  deleteButton.replaceWith(cloneDeleteButton);
 
-    cloneDeleteButton.addEventListener("click", handleDelete);
+  cloneDeleteButton.addEventListener("click", handleDelete);
 }
 
 function clearAllInputFields() {
-    const allInputFields = document.querySelectorAll(".input-field");
-    allInputFields.forEach(inputField => {
-        inputField.value = "";
-    });
+  const allInputFields = document.querySelectorAll(".input-field");
+  allInputFields.forEach((inputField) => {
+    inputField.value = "";
+  });
 }

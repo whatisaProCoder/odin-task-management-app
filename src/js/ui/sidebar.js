@@ -9,7 +9,7 @@ import blueHashtagIcon from "../../icons/blue_hashtag_icon.svg";
 import greenHashtagIcon from "../../icons/green_hashtag_icon.svg";
 import projectAddButton from "../../icons/project_add_button.svg";
 import blackHashtagIcon from "../../icons/black_hashtag_icon.svg";
-import TaskManager from "../core/taskManager"
+import TaskManager from "../core/taskManager";
 import createProjectPage from "./project_page";
 import menuCloseIcon from "../../icons/menu_close_icon.svg";
 import { handleAddTaskDialogBox } from "./add_task_dialog";
@@ -18,8 +18,8 @@ import createFilteredPage from "./filtered_page";
 const taskManager = new TaskManager();
 
 export default function initialiseSidebar() {
-    const sidebarElement = document.querySelector(".sidebar");
-    sidebarElement.innerHTML = /* html */ `
+  const sidebarElement = document.querySelector(".sidebar");
+  sidebarElement.innerHTML = /* html */ `
         <div class="sidebar-heading">
             <div class="brand-name">Polymath</div>
             <img class="sidebar-icon" src="${sidebarIcon}" alt="Toggle Sidebar">
@@ -60,8 +60,8 @@ export default function initialiseSidebar() {
         <div class="sidebar-projects"></div>
     `;
 
-    const addProjectDialogBox = document.createElement("div");
-    addProjectDialogBox.innerHTML = /* html */ `
+  const addProjectDialogBox = document.createElement("div");
+  addProjectDialogBox.innerHTML = /* html */ `
         <dialog class="add-project-dialog-box" closeby="any">
             <div class="container">
                 <div class="dialog-header">
@@ -76,165 +76,178 @@ export default function initialiseSidebar() {
         </dialog>
     `;
 
-    document.body.append(addProjectDialogBox);
+  document.body.append(addProjectDialogBox);
 
-    const globalSidebarToggle = document.createElement("div");
-    globalSidebarToggle.classList.add("global-sidebar-toggle");
-    globalSidebarToggle.innerHTML = /* html */ `
+  const globalSidebarToggle = document.createElement("div");
+  globalSidebarToggle.classList.add("global-sidebar-toggle");
+  globalSidebarToggle.innerHTML = /* html */ `
         <img src="${globalsidebarIcon}" alt="Toggle Sidebar">
     `;
-    document.body.append(globalSidebarToggle);
+  document.body.append(globalSidebarToggle);
 
-    handleSidebarOpeningClosing();
+  handleSidebarOpeningClosing();
 
-    handleFilteredSection();
+  handleFilteredSection();
 
-    populateProjectSection();
+  populateProjectSection();
 
-    handleSidebarItemStates();
+  handleSidebarItemStates();
 
-    handleProjectAddButton();
+  handleProjectAddButton();
 
-    handleAddTaskDialogBox(".add-task-button", null);
+  handleAddTaskDialogBox(".add-task-button", null);
 }
 
 function handleSidebarOpeningClosing() {
-    const sidebarElement = document.querySelector(".sidebar");
-    const sidebarButton = document.querySelector(".sidebar-icon");
-    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
+  const sidebarElement = document.querySelector(".sidebar");
+  const sidebarButton = document.querySelector(".sidebar-icon");
+  const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
 
-    sidebarButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        globalSidebarToggle.style.display = "block";
-        sidebarElement.classList.add("sidebar-closing");
-    });
-    globalSidebarToggle.addEventListener("click", (event) => {
-        console.log(event.target);
-        globalSidebarToggle.style.display = "none";
-        sidebarElement.classList.remove("sidebar-closing");
-    });
+  sidebarButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    globalSidebarToggle.style.display = "block";
+    sidebarElement.classList.add("sidebar-closing");
+  });
+  globalSidebarToggle.addEventListener("click", (event) => {
+    console.log(event.target);
+    globalSidebarToggle.style.display = "none";
+    sidebarElement.classList.remove("sidebar-closing");
+  });
 }
 
 function closeSidebarifMobile() {
-    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
-    const sidebarElement = document.querySelector(".sidebar");
-    if (window.innerWidth < 750) {
-        globalSidebarToggle.style.display = "block";
-        sidebarElement.classList.add("sidebar-closing");
-    }
+  const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
+  const sidebarElement = document.querySelector(".sidebar");
+  if (window.innerWidth < 750) {
+    globalSidebarToggle.style.display = "block";
+    sidebarElement.classList.add("sidebar-closing");
+  }
 }
 
 function handleFilteredSection() {
-    const sidebarElement = document.querySelector(".sidebar");
-    const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
-    const todaysTasksItem = sidebarElement.querySelector("#todays-tasks-item");
-    const upcomingTasksItem = sidebarElement.querySelector("#upcoming-tasks-item");
-    const completedTasksItem = sidebarElement.querySelector("#completed-tasks-item");
-    const highPriorityTasksItem = sidebarElement.querySelector("#high-priority-tasks-item");
-    const mediumPriorityTasksItem = sidebarElement.querySelector("#medium-priority-tasks-item");
-    const lowPriorityTasksItem = sidebarElement.querySelector("#low-priority-tasks-item");
+  const sidebarElement = document.querySelector(".sidebar");
+  const globalSidebarToggle = document.querySelector(".global-sidebar-toggle");
+  const todaysTasksItem = sidebarElement.querySelector("#todays-tasks-item");
+  const upcomingTasksItem = sidebarElement.querySelector(
+    "#upcoming-tasks-item",
+  );
+  const completedTasksItem = sidebarElement.querySelector(
+    "#completed-tasks-item",
+  );
+  const highPriorityTasksItem = sidebarElement.querySelector(
+    "#high-priority-tasks-item",
+  );
+  const mediumPriorityTasksItem = sidebarElement.querySelector(
+    "#medium-priority-tasks-item",
+  );
+  const lowPriorityTasksItem = sidebarElement.querySelector(
+    "#low-priority-tasks-item",
+  );
 
+  todaysTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("Today's Tasks");
+  });
 
-    todaysTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("Today's Tasks");
-    });
+  upcomingTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("Upcoming Tasks");
+  });
 
-    upcomingTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("Upcoming Tasks");
-    });
+  completedTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("Completed Tasks");
+  });
 
-    completedTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("Completed Tasks");
-    });
+  highPriorityTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("High Priority Tasks");
+  });
 
-    highPriorityTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("High Priority Tasks");
-    });
+  mediumPriorityTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("Medium Priority Tasks");
+  });
 
-
-    mediumPriorityTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("Medium Priority Tasks");
-    });
-
-    lowPriorityTasksItem.addEventListener("click", (event) => {
-        console.log(event.target);
-        closeSidebarifMobile();
-        createFilteredPage("Low Priority Tasks");
-    });
+  lowPriorityTasksItem.addEventListener("click", (event) => {
+    console.log(event.target);
+    closeSidebarifMobile();
+    createFilteredPage("Low Priority Tasks");
+  });
 }
 
 function handleSidebarItemStates() {
-    const sidebarItems = document.querySelectorAll(".sidebar-item");
+  const sidebarItems = document.querySelectorAll(".sidebar-item");
 
-    sidebarItems.forEach((item) => {
-        item.addEventListener("click", (event) => {
-            console.log(event.target);
-            sidebarItems.forEach((item) => {
-                item.classList.remove("sidebar-item-active");
-            });
-            item.classList.add("sidebar-item-active");
-        });
+  sidebarItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      console.log(event.target);
+      sidebarItems.forEach((item) => {
+        item.classList.remove("sidebar-item-active");
+      });
+      item.classList.add("sidebar-item-active");
     });
+  });
 }
 
 export function populateProjectSection() {
-    const sidebarProjectsSection = document.querySelector(".sidebar-projects");
-    sidebarProjectsSection.innerHTML = ``;
+  const sidebarProjectsSection = document.querySelector(".sidebar-projects");
+  sidebarProjectsSection.innerHTML = ``;
 
-    for (const project of taskManager.getAllProjects()) {
-        const sidebarProjectElement = document.createElement("div");
-        sidebarProjectElement.innerHTML = /* html */ `
+  for (const project of taskManager.getAllProjects()) {
+    const sidebarProjectElement = document.createElement("div");
+    sidebarProjectElement.innerHTML = /* html */ `
             <div class="sidebar-item">
                 <img class="sidebar-item-icon" src="${blackHashtagIcon}">
                 ${project.projectName}
             </div>
         `;
-        sidebarProjectElement.addEventListener("click", (event) => {
-            console.log(event.target);
-            closeSidebarifMobile();
-            createProjectPage(project.projectID);
-        })
-        document.querySelector(".sidebar-projects").append(sidebarProjectElement);
-    }
+    sidebarProjectElement.addEventListener("click", (event) => {
+      console.log(event.target);
+      closeSidebarifMobile();
+      createProjectPage(project.projectID);
+    });
+    document.querySelector(".sidebar-projects").append(sidebarProjectElement);
+  }
 
-    handleSidebarItemStates();
+  handleSidebarItemStates();
 }
 
 function handleProjectAddButton() {
-    const projectAddButton = document.querySelector(".project-section-add-button");
-    const addProjectDialogBox = document.querySelector(".add-project-dialog-box");
-    const projectNameInput = addProjectDialogBox.querySelector(".project-name-input");
-    const submitButton = addProjectDialogBox.querySelector(".submit-button");
+  const projectAddButton = document.querySelector(
+    ".project-section-add-button",
+  );
+  const addProjectDialogBox = document.querySelector(".add-project-dialog-box");
+  const projectNameInput = addProjectDialogBox.querySelector(
+    ".project-name-input",
+  );
+  const submitButton = addProjectDialogBox.querySelector(".submit-button");
 
-    projectAddButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        addProjectDialogBox.showModal();
-    });
+  projectAddButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    addProjectDialogBox.showModal();
+  });
 
-    const menuCloseButton = addProjectDialogBox.querySelector(".menu-close-button");
-    menuCloseButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        addProjectDialogBox.close();
-        projectNameInput.value = "";
-    });
+  const menuCloseButton =
+    addProjectDialogBox.querySelector(".menu-close-button");
+  menuCloseButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    addProjectDialogBox.close();
+    projectNameInput.value = "";
+  });
 
-    submitButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        if (projectNameInput.value != "") {
-            taskManager.addProject(projectNameInput.value);
-            addProjectDialogBox.close();
-            projectNameInput.value = "";
-            populateProjectSection();
-        }
-    })
+  submitButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    if (projectNameInput.value != "") {
+      taskManager.addProject(projectNameInput.value);
+      addProjectDialogBox.close();
+      projectNameInput.value = "";
+      populateProjectSection();
+    }
+  });
 }

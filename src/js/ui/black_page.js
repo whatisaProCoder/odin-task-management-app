@@ -1,4 +1,4 @@
 export default function createBlankPage() {
-    const content = document.querySelector(".content");
-    content.innerHTML = "";
+  const content = document.querySelector(".content");
+  content.innerHTML = "";
 }

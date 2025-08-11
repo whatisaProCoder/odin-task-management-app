@@ -11,8 +11,8 @@ import { showAlert } from "./custom_popups";
 const taskManager = new TaskManager();
 
 export default function initialiseAddTaskDialogBox() {
-    const addTaskDialogBox = document.createElement("div");
-    addTaskDialogBox.innerHTML = /* html */ `
+  const addTaskDialogBox = document.createElement("div");
+  addTaskDialogBox.innerHTML = /* html */ `
                     <dialog class="add-task-dialog-box" closeby="any">
                 <div class="container">
                     <div class="dialog-header">
@@ -53,112 +53,119 @@ export default function initialiseAddTaskDialogBox() {
             </dialog>
     `;
 
-    document.body.append(addTaskDialogBox);
+  document.body.append(addTaskDialogBox);
 }
 
 export function handleAddTaskDialogBox(triggerElementClass, projectID) {
-    const addTaskDialogBox = document.querySelector(".add-task-dialog-box");
-    const trigger = document.querySelector(triggerElementClass);
-    const selectProjectInputField = addTaskDialogBox.querySelector("#select-project");
+  const addTaskDialogBox = document.querySelector(".add-task-dialog-box");
+  const trigger = document.querySelector(triggerElementClass);
+  const selectProjectInputField =
+    addTaskDialogBox.querySelector("#select-project");
 
-    trigger.addEventListener("click", (event) => {
-        console.log(event.target);
-        renderProjectField();
-        addTaskDialogBox.showModal();
-    })
+  trigger.addEventListener("click", (event) => {
+    console.log(event.target);
+    renderProjectField();
+    addTaskDialogBox.showModal();
+  });
 
-    const closeButton = addTaskDialogBox.querySelector(".menu-close-button");
-    const cloneCloseButton = closeButton.cloneNode(true);
-    closeButton.replaceWith(cloneCloseButton);
-    cloneCloseButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        addTaskDialogBox.close();
-        clearAllInputFields();
-    })
+  const closeButton = addTaskDialogBox.querySelector(".menu-close-button");
+  const cloneCloseButton = closeButton.cloneNode(true);
+  closeButton.replaceWith(cloneCloseButton);
+  cloneCloseButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    addTaskDialogBox.close();
+    clearAllInputFields();
+  });
 
-    function renderProjectField() {
-        if (projectID != null) {
-            selectProjectInputField.value = taskManager.getProject(projectID).projectName;
+  function renderProjectField() {
+    if (projectID != null) {
+      selectProjectInputField.value =
+        taskManager.getProject(projectID).projectName;
+    }
+
+    const getProjectOptions = () => {
+      const container = document.createElement("div");
+      const projects = taskManager.getAllProjects();
+      for (const project of projects) {
+        const option = document.createElement("option");
+        option.value = project.projectID;
+        option.textContent = project.projectName;
+        if (projectID === project.projectID) {
+          option.selected = true;
         }
-
-        const getProjectOptions = () => {
-            const container = document.createElement("div");
-            const projects = taskManager.getAllProjects();
-            for (const project of projects) {
-                const option = document.createElement("option");
-                option.value = project.projectID;
-                option.textContent = project.projectName;
-                if (projectID === project.projectID) {
-                    option.selected = true;
-                }
-                container.append(option);
-            }
-            return container;
-        }
-
-        selectProjectInputField.innerHTML = /* html */ `
-            <option value="" disabled ${projectID === null ? "selected" : ""} hidden>Select Project</option>
-        `;
-        selectProjectInputField.append(getProjectOptions());
+        container.append(option);
+      }
+      return container;
     };
 
-    handleSaveAction(addTaskDialogBox, projectID);
+    selectProjectInputField.innerHTML = /* html */ `
+            <option value="" disabled ${projectID === null ? "selected" : ""} hidden>Select Project</option>
+        `;
+    selectProjectInputField.append(getProjectOptions());
+  }
+
+  handleSaveAction(addTaskDialogBox, projectID);
 }
 
 function handleSaveAction(dialogBoxReference, projectID) {
-    const selectProjectInputField = dialogBoxReference.querySelector("#select-project");
-    const titleInputField = dialogBoxReference.querySelector("#title-field");
-    const descriptionField = dialogBoxReference.querySelector("#description-field");
-    const dueDateField = dialogBoxReference.querySelector("#due-date-field");
-    const priorityField = dialogBoxReference.querySelector("#select-priority");
-    const notesField = dialogBoxReference.querySelector("#notes-field");
+  const selectProjectInputField =
+    dialogBoxReference.querySelector("#select-project");
+  const titleInputField = dialogBoxReference.querySelector("#title-field");
+  const descriptionField =
+    dialogBoxReference.querySelector("#description-field");
+  const dueDateField = dialogBoxReference.querySelector("#due-date-field");
+  const priorityField = dialogBoxReference.querySelector("#select-priority");
+  const notesField = dialogBoxReference.querySelector("#notes-field");
 
-    const handleSubmit = (event) => {
-        console.log(event.target);
+  const handleSubmit = (event) => {
+    console.log(event.target);
 
-        if (titleInputField.value == "") {
-            showAlert(dialogBoxReference, "Enter title of the task!");
-            return;
-        }
+    if (titleInputField.value == "") {
+      showAlert(dialogBoxReference, "Enter title of the task!");
+      return;
+    }
 
-        if (dueDateField.value == "") {
-            showAlert(dialogBoxReference, "Please select date and time of deadline.")
-            return;
-        }
+    if (dueDateField.value == "") {
+      showAlert(dialogBoxReference, "Please select date and time of deadline.");
+      return;
+    }
 
-        if (priorityField.value == "") {
-            showAlert(dialogBoxReference, "Select priority of this task...");
-            return;
-        }
+    if (priorityField.value == "") {
+      showAlert(dialogBoxReference, "Select priority of this task...");
+      return;
+    }
 
-        if (projectID == null) {
-            projectID = selectProjectInputField.value;
-        }
+    if (projectID == null) {
+      projectID = selectProjectInputField.value;
+    }
 
-        taskManager.addTask(projectID, new Task(
-            titleInputField.value,
-            descriptionField.value,
-            dueDateField.value,
-            priorityField.value,
-            notesField.value,
-            false
-        ));
-        createProjectPage(projectID);
-        clearAllInputFields();
+    taskManager.addTask(
+      projectID,
+      new Task(
+        titleInputField.value,
+        descriptionField.value,
+        dueDateField.value,
+        priorityField.value,
+        notesField.value,
+        false,
+      ),
+    );
+    createProjectPage(projectID);
+    clearAllInputFields();
 
-        dialogBoxReference.close();
-    };
+    dialogBoxReference.close();
+  };
 
-    const submitButton = dialogBoxReference.querySelector(".submit-button");
-    const cloneSubmitButton = submitButton.cloneNode(true);
-    submitButton.replaceWith(cloneSubmitButton);
+  const submitButton = dialogBoxReference.querySelector(".submit-button");
+  const cloneSubmitButton = submitButton.cloneNode(true);
+  submitButton.replaceWith(cloneSubmitButton);
 
-    cloneSubmitButton.addEventListener("click", handleSubmit);
+  cloneSubmitButton.addEventListener("click", handleSubmit);
 }
 
 function clearAllInputFields() {
-    const allInputFields = document.querySelectorAll(".input-field");
-    allInputFields.forEach(inputField => {
-        inputField.value = "";
-    });
+  const allInputFields = document.querySelectorAll(".input-field");
+  allInputFields.forEach((inputField) => {
+    inputField.value = "";
+  });
 }

@@ -11,8 +11,8 @@ import { showAlert } from "./custom_popups";
 const taskManager = new TaskManager();
 
 export default function initialisePreviewTaskDialogBox() {
-    const previewTaskDialogBox = document.createElement("div");
-    previewTaskDialogBox.innerHTML = /* html */ `
+  const previewTaskDialogBox = document.createElement("div");
+  previewTaskDialogBox.innerHTML = /* html */ `
                     <dialog class="preview-task-dialog-box" closeby="any">
                 <div class="container">
                     <div class="dialog-header">
@@ -44,61 +44,69 @@ export default function initialisePreviewTaskDialogBox() {
             </dialog>
     `;
 
-    document.body.append(previewTaskDialogBox);
+  document.body.append(previewTaskDialogBox);
 }
 
 export function openPreviewTaskDialogBox(projectID, taskID) {
-    const previewTaskDialogBox = document.querySelector(".preview-task-dialog-box");
-    const projectInputField = previewTaskDialogBox.querySelector("#select-project");
-    const titleInputField = previewTaskDialogBox.querySelector("#title-field");
-    const descriptionField = previewTaskDialogBox.querySelector("#description-field");
-    const descriptionFieldLabel = previewTaskDialogBox.querySelector("#preview-dialog-description-label");
-    const dueDateField = previewTaskDialogBox.querySelector("#due-date-field");
-    const priorityField = previewTaskDialogBox.querySelector("#select-priority");
-    const notesField = previewTaskDialogBox.querySelector("#notes-field");
-    const notesFieldLabel = previewTaskDialogBox.querySelector("#preview-dialog-notes-label")
+  const previewTaskDialogBox = document.querySelector(
+    ".preview-task-dialog-box",
+  );
+  const projectInputField =
+    previewTaskDialogBox.querySelector("#select-project");
+  const titleInputField = previewTaskDialogBox.querySelector("#title-field");
+  const descriptionField =
+    previewTaskDialogBox.querySelector("#description-field");
+  const descriptionFieldLabel = previewTaskDialogBox.querySelector(
+    "#preview-dialog-description-label",
+  );
+  const dueDateField = previewTaskDialogBox.querySelector("#due-date-field");
+  const priorityField = previewTaskDialogBox.querySelector("#select-priority");
+  const notesField = previewTaskDialogBox.querySelector("#notes-field");
+  const notesFieldLabel = previewTaskDialogBox.querySelector(
+    "#preview-dialog-notes-label",
+  );
 
-    const project = taskManager.getProject(projectID);
-    const task = taskManager.getTask(projectID, taskID);
+  const project = taskManager.getProject(projectID);
+  const task = taskManager.getTask(projectID, taskID);
 
-    projectInputField.value = project.projectName;
-    titleInputField.value = task.title;
-    descriptionField.value = task.description;
-    dueDateField.value = task.dueDate;
-    priorityField.value = task.priority;
-    notesField.value = task.notes;
+  projectInputField.value = project.projectName;
+  titleInputField.value = task.title;
+  descriptionField.value = task.description;
+  dueDateField.value = task.dueDate;
+  priorityField.value = task.priority;
+  notesField.value = task.notes;
 
-    if (task.description === "") {
-        descriptionField.style.display = "none";
-        descriptionFieldLabel.style.display = "none";
-    } else {
-        descriptionField.style.display = "block";
-        descriptionFieldLabel.style.display = "block";
-    }
+  if (task.description === "") {
+    descriptionField.style.display = "none";
+    descriptionFieldLabel.style.display = "none";
+  } else {
+    descriptionField.style.display = "block";
+    descriptionFieldLabel.style.display = "block";
+  }
 
-    if (task.notes === "") {
-        notesField.style.display = "none";
-        notesFieldLabel.style.display = "none";
-    } else {
-        notesField.style.display = "block";
-        notesFieldLabel.style.display = "flex";
-    }
+  if (task.notes === "") {
+    notesField.style.display = "none";
+    notesFieldLabel.style.display = "none";
+  } else {
+    notesField.style.display = "block";
+    notesFieldLabel.style.display = "flex";
+  }
 
-    const closeButton = previewTaskDialogBox.querySelector(".menu-close-button");
-    const cloneCloseButton = closeButton.cloneNode(true);
-    closeButton.replaceWith(cloneCloseButton);
-    cloneCloseButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        previewTaskDialogBox.close();
-        clearAllInputFields();
-    });
+  const closeButton = previewTaskDialogBox.querySelector(".menu-close-button");
+  const cloneCloseButton = closeButton.cloneNode(true);
+  closeButton.replaceWith(cloneCloseButton);
+  cloneCloseButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    previewTaskDialogBox.close();
+    clearAllInputFields();
+  });
 
-    previewTaskDialogBox.showModal();
+  previewTaskDialogBox.showModal();
 }
 
 function clearAllInputFields() {
-    const allInputFields = document.querySelectorAll(".input-field");
-    allInputFields.forEach(inputField => {
-        inputField.value = "";
-    });
+  const allInputFields = document.querySelectorAll(".input-field");
+  allInputFields.forEach((inputField) => {
+    inputField.value = "";
+  });
 }

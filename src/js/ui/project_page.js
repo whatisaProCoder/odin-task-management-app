@@ -28,13 +28,13 @@ const lowPriorityColor = "#259031ff";
 const taskManager = new TaskManager();
 
 export default function createProjectPage(projectID) {
-    const projects = taskManager.getAllProjects();
-    const project = projects.find((project) => project.projectID == projectID);
+  const projects = taskManager.getAllProjects();
+  const project = projects.find((project) => project.projectID == projectID);
 
-    const contentElement = document.querySelector(".content");
-    contentElement.classList.remove("filtered-page");
-    contentElement.classList.add("project-page");
-    contentElement.innerHTML = /* html */ `
+  const contentElement = document.querySelector(".content");
+  contentElement.classList.remove("filtered-page");
+  contentElement.classList.add("project-page");
+  contentElement.innerHTML = /* html */ `
         <div class="project-page-header">
             <div class="project-name">${project.projectName}</div>
             <img class="project-menu" src="${menuIcon}">
@@ -75,131 +75,171 @@ export default function createProjectPage(projectID) {
         </div>
     `;
 
-    handleMenuState(projectID);
-    populateTasks(projectID, project.tasks);
+  handleMenuState(projectID);
+  populateTasks(projectID, project.tasks);
 
-    handleAddTaskDialogBox(".add-task-item", projectID);
+  handleAddTaskDialogBox(".add-task-item", projectID);
 
-    console.log("Project Page created for ID : ", projectID);
+  console.log("Project Page created for ID : ", projectID);
 }
 
 function handleMenuState(projectID) {
-    const menuButton = document.querySelector(".project-menu");
-    const projectMenuDialogBox = document.querySelector(".menu-dialog-box");
+  const menuButton = document.querySelector(".project-menu");
+  const projectMenuDialogBox = document.querySelector(".menu-dialog-box");
 
-    menuButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        projectMenuDialogBox.showModal();
-    });
+  menuButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    projectMenuDialogBox.showModal();
+  });
 
-    const menuCloseButton = projectMenuDialogBox.querySelector(".menu-close-button");
-    menuCloseButton.addEventListener("click", (event) => {
-        console.log(event.target);
+  const menuCloseButton =
+    projectMenuDialogBox.querySelector(".menu-close-button");
+  menuCloseButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    projectMenuDialogBox.close();
+  });
+
+  projectMenuDialogBox
+    .querySelector("#clear-project-tasks")
+    .addEventListener("click", async function (event) {
+      console.log(event.target);
+      const userConfirmation = await showConfirm(
+        projectMenuDialogBox,
+        "Do you want to clear tasks for this project?",
+      );
+      if (userConfirmation) {
+        taskManager.removeAllTasksInProject(projectID);
         projectMenuDialogBox.close();
+        createProjectPage(projectID);
+      }
     });
 
-    projectMenuDialogBox.querySelector("#clear-project-tasks").addEventListener("click", async function (event) {
-        console.log(event.target);
-        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to clear tasks for this project?");
-        if (userConfirmation) {
-            taskManager.removeAllTasksInProject(projectID);
-            projectMenuDialogBox.close();
-            createProjectPage(projectID);
-        }
-    });
-
-    projectMenuDialogBox.querySelector("#delete-project").addEventListener("click", async function (event) {
-        console.log(event.target);
-        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to delete this project?");
-        if (userConfirmation) {
-            taskManager.removeProject(projectID);
-            projectMenuDialogBox.close();
-            populateProjectSection();
-            createBlankPage();
-        }
-    });
-
-    projectMenuDialogBox.querySelector("#clear-all-data").addEventListener("click", async function (event) {
-        console.log(event.target);
-        const userConfirmation = await showConfirm(projectMenuDialogBox, "Do you want to factory reset?");
-        if (userConfirmation) {
-            taskManager.clearAllData();
-            projectMenuDialogBox.close();
-            populateProjectSection();
-            createBlankPage();
-        }
-    });
-
-    projectMenuDialogBox.querySelector("#rename-project").addEventListener("click", (event) => {
-        console.log(event.target);
-
+  projectMenuDialogBox
+    .querySelector("#delete-project")
+    .addEventListener("click", async function (event) {
+      console.log(event.target);
+      const userConfirmation = await showConfirm(
+        projectMenuDialogBox,
+        "Do you want to delete this project?",
+      );
+      if (userConfirmation) {
+        taskManager.removeProject(projectID);
         projectMenuDialogBox.close();
-
-        const renameProjectDialogBox = document.querySelector(".rename-project-dialog-box");
-        renameProjectDialogBox.showModal();
-
-        const menuCloseButton = renameProjectDialogBox.querySelector(".menu-close-button");
-        menuCloseButton.addEventListener("click", (event) => {
-            renameProjectDialogBox.close();
-        });
-
-        const submitButton = renameProjectDialogBox.querySelector(".submit-button");
-        const projectInputField = renameProjectDialogBox.querySelector(".project-name-input");
-        submitButton.addEventListener("click", (event) => {
-            console.log(event.target);
-
-            if (projectInputField.value != "") {
-                renameProjectDialogBox.close();
-                taskManager.renameProject(projectID, projectInputField.value);
-                projectMenuDialogBox.close();
-                populateProjectSection();
-                createProjectPage(projectID);
-            }
-        });
+        populateProjectSection();
+        createBlankPage();
+      }
     });
 
-    projectMenuDialogBox.querySelector(".import-button").addEventListener("click", (event) => {
+  projectMenuDialogBox
+    .querySelector("#clear-all-data")
+    .addEventListener("click", async function (event) {
+      console.log(event.target);
+      const userConfirmation = await showConfirm(
+        projectMenuDialogBox,
+        "Do you want to factory reset?",
+      );
+      if (userConfirmation) {
+        taskManager.clearAllData();
+        projectMenuDialogBox.close();
+        populateProjectSection();
+        createBlankPage();
+      }
+    });
+
+  projectMenuDialogBox
+    .querySelector("#rename-project")
+    .addEventListener("click", (event) => {
+      console.log(event.target);
+
+      projectMenuDialogBox.close();
+
+      const renameProjectDialogBox = document.querySelector(
+        ".rename-project-dialog-box",
+      );
+      renameProjectDialogBox.showModal();
+
+      const menuCloseButton =
+        renameProjectDialogBox.querySelector(".menu-close-button");
+      menuCloseButton.addEventListener("click", (event) => {
+        renameProjectDialogBox.close();
+      });
+
+      const submitButton =
+        renameProjectDialogBox.querySelector(".submit-button");
+      const projectInputField = renameProjectDialogBox.querySelector(
+        ".project-name-input",
+      );
+      submitButton.addEventListener("click", (event) => {
         console.log(event.target);
-        async function loadJSON() {
-            const file = await fileOpen({ mimeTypes: ["application/json"] });
-            const text = await file.text();
-            return JSON.parse(text);
+
+        if (projectInputField.value != "") {
+          renameProjectDialogBox.close();
+          taskManager.renameProject(projectID, projectInputField.value);
+          projectMenuDialogBox.close();
+          populateProjectSection();
+          createProjectPage(projectID);
         }
-
-        loadJSON().then(data => {
-            const storageManager = new StorageManager();
-            storageManager.setData("projects", data);
-            location.reload();
-        });
+      });
     });
 
-    projectMenuDialogBox.querySelector(".export-button").addEventListener("click", (event) => {
-        console.log(event.target);
-        const data = taskManager.getAllProjects();
-        showAlert(projectMenuDialogBox, "Data exported to JSON file!");
-        download(JSON.stringify(data, null, 2), "data.json", "application/json");
+  projectMenuDialogBox
+    .querySelector(".import-button")
+    .addEventListener("click", (event) => {
+      console.log(event.target);
+      async function loadJSON() {
+        const file = await fileOpen({ mimeTypes: ["application/json"] });
+        const text = await file.text();
+        return JSON.parse(text);
+      }
+
+      loadJSON().then((data) => {
+        const storageManager = new StorageManager();
+        storageManager.setData("projects", data);
+        location.reload();
+      });
+    });
+
+  projectMenuDialogBox
+    .querySelector(".export-button")
+    .addEventListener("click", (event) => {
+      console.log(event.target);
+      const data = taskManager.getAllProjects();
+      showAlert(projectMenuDialogBox, "Data exported to JSON file!");
+      download(JSON.stringify(data, null, 2), "data.json", "application/json");
     });
 }
 
 function getRequiredColorAssets(priority) {
-    let returnObject = {};
-    if (priority === "High") {
-        returnObject = { priorityColor: highPriorityColor, hashtagIcon: redHashtagIcon, alarmIcon: redAlarmIcon };
-    } else if (priority === "Medium") {
-        returnObject = { priorityColor: mediumPriorityColor, hashtagIcon: blueHashtagIcon, alarmIcon: blueAlarmIcon };
-    } else if (priority === "Low") {
-        returnObject = { priorityColor: lowPriorityColor, hashtagIcon: greenHashtagIcon, alarmIcon: greenAlarmIcon };
-    }
-    return returnObject;
+  let returnObject = {};
+  if (priority === "High") {
+    returnObject = {
+      priorityColor: highPriorityColor,
+      hashtagIcon: redHashtagIcon,
+      alarmIcon: redAlarmIcon,
+    };
+  } else if (priority === "Medium") {
+    returnObject = {
+      priorityColor: mediumPriorityColor,
+      hashtagIcon: blueHashtagIcon,
+      alarmIcon: blueAlarmIcon,
+    };
+  } else if (priority === "Low") {
+    returnObject = {
+      priorityColor: lowPriorityColor,
+      hashtagIcon: greenHashtagIcon,
+      alarmIcon: greenAlarmIcon,
+    };
+  }
+  return returnObject;
 }
 
 function createTaskCard(projectID, taskObject) {
-    const taskCard = document.createElement("div");
-    taskCard.classList.add("task-card");
+  const taskCard = document.createElement("div");
+  taskCard.classList.add("task-card");
 
-    const assets = getRequiredColorAssets(taskObject.priority);
+  const assets = getRequiredColorAssets(taskObject.priority);
 
-    taskCard.innerHTML = /* html */ `
+  taskCard.innerHTML = /* html */ `
         <div class="upper-row">
             <input type="checkbox" ${taskObject.complete ? "checked" : ""}  class="task-card-checkbox" style="accent-color: ${assets.priorityColor}">
             <img class="task-hashtag-icon" src="${assets.hashtagIcon}">
@@ -214,45 +254,50 @@ function createTaskCard(projectID, taskObject) {
         <img src=${editIcon} class="edit-button">
     `;
 
-    const checkboxElement = taskCard.querySelector(`.task-card-checkbox`);
-    checkboxElement.addEventListener("click", (event) => {
+  const checkboxElement = taskCard.querySelector(`.task-card-checkbox`);
+  checkboxElement.addEventListener("click", (event) => {
+    console.log(event.target);
+    taskManager.updateTask(
+      taskObject.taskID,
+      new ExistingTask(
+        taskObject.taskID,
+        taskObject.title,
+        taskObject.description,
+        taskObject.dueDate,
+        taskObject.priority,
+        taskObject.notes,
+        checkboxElement.checked,
+      ),
+    );
+  });
+
+  const editButton = taskCard.querySelector(".edit-button");
+  editButton.addEventListener("click", (event) => {
+    console.log(event.target);
+    openEditTaskDialogBox(projectID, taskObject.taskID);
+  });
+
+  const previewTrigger1 = taskCard.querySelector(".task-hashtag-icon");
+  const previewTrigger2 = taskCard.querySelector(".task-title");
+  const previewTrigger3 = taskCard.querySelector(".lower-row");
+
+  [previewTrigger1, previewTrigger2, previewTrigger3].forEach(
+    (triggerElement) => {
+      triggerElement.addEventListener("click", (event) => {
         console.log(event.target);
-        taskManager.updateTask(taskObject.taskID, new ExistingTask(
-            taskObject.taskID,
-            taskObject.title,
-            taskObject.description,
-            taskObject.dueDate,
-            taskObject.priority,
-            taskObject.notes,
-            checkboxElement.checked,
-        ));
-    });
+        openPreviewTaskDialogBox(projectID, taskObject.taskID);
+      });
+    },
+  );
 
-    const editButton = taskCard.querySelector(".edit-button");
-    editButton.addEventListener("click", (event) => {
-        console.log(event.target);
-        openEditTaskDialogBox(projectID, taskObject.taskID);
-    });
-
-    const previewTrigger1 = taskCard.querySelector(".task-hashtag-icon");
-    const previewTrigger2 = taskCard.querySelector(".task-title");
-    const previewTrigger3 = taskCard.querySelector(".lower-row");
-
-    [previewTrigger1, previewTrigger2, previewTrigger3].forEach((triggerElement) => {
-        triggerElement.addEventListener("click", (event) => {
-            console.log(event.target);
-            openPreviewTaskDialogBox(projectID, taskObject.taskID);
-        });
-    });
-
-    return taskCard;
+  return taskCard;
 }
 
 function populateTasks(projectID, tasksArray) {
-    const tasksContainer = document.querySelector(".tasks");
-    tasksContainer.innerHTML = ``;
+  const tasksContainer = document.querySelector(".tasks");
+  tasksContainer.innerHTML = ``;
 
-    tasksArray.forEach(taskObject => {
-        tasksContainer.append(createTaskCard(projectID, taskObject));
-    });
+  tasksArray.forEach((taskObject) => {
+    tasksContainer.append(createTaskCard(projectID, taskObject));
+  });
 }
