@@ -15,6 +15,5 @@ export default [
       ...js.configs.recommended.rules,
     }
   },
-  // Prettier config should be last to override formatting rules
   prettierConfig
 ];
