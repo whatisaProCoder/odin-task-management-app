@@ -14,7 +14,8 @@
     "deploy:upload": "git add dist -f && git commit -m \"Deployment commit\" && git subtree push --prefix dist origin gh-pages && git checkout main",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "prepare": "husky && husky install"
   },
   "keywords": [],
   "author": "Pritam Debnath",
@@ -44,11 +45,19 @@
     "css-loader": "^7.1.2",
     "electron": "^37.2.6",
     "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
     "globals": "^16.3.0",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "prettier": "3.6.2",
     "style-loader": "^4.0.0",
     "webpack-dev-server": "^5.2.2"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
