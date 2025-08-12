@@ -54,6 +54,7 @@ export default function createFilteredPage(pageName) {
         const taskDate = new Date(task.dueDate);
 
         if (
+          todaysDate.getDate() < taskDate.getDate() &&
           todaysDate.getDate() - taskDate.getDate() < 14 &&
           todaysDate.getDate() != taskDate.getDate() &&
           todaysDate.getMonth() == taskDate.getMonth() &&
