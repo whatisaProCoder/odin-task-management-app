@@ -4,6 +4,8 @@ An intuitive task management application built with modern web technologies and 
 
 ![Polymath App](https://github.com/whatisaProCoder/odin-task-management-app/blob/main/demo/app_preview.png)
 
+**[Click here to open the live demo!](https://whatisaprocoder.github.io/odin-task-management-app/)**
+
 ## 📚 Table of Contents
 
 - [Introduction](#introduction)
