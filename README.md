@@ -6,6 +6,8 @@ An intuitive task management application built with modern web technologies and 
 
 **[Click here to open the live demo!](https://whatisaprocoder.github.io/odin-task-management-app/)**
 
+**[Download - Windows Installer](https://drive.google.com/file/d/1iaLTAQSdOYPYyDctBILAWffo3a1EyWzD/view?usp=drive_link)**
+
 ## 📚 Table of Contents
 
 - [Introduction](#introduction)
